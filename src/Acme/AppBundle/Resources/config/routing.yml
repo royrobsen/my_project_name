@@ -1,0 +1,7 @@
+acme_app_homepage:
+    path:     /default/{name}
+    defaults: { _controller: AcmeAppBundle:Default:index }
+    
+acme_app_homepage:
+    path: /hello/{name}
+    defaults: { _controller: AppBundle:Hello:index }
