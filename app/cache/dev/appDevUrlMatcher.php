@@ -127,51 +127,14 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // acme_admin_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_admin_homepage')), array (  '_controller' => 'AcmeAdminBundle:Default:index',));
-        }
-
-        // acme_blog_homepage
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'acme_blog_homepage');
-            }
-
-            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::indexAction',  '_route' => 'acme_blog_homepage',);
-        }
-
-        // acme_blog_user
-        if (0 === strpos($pathinfo, '/show') && preg_match('#^/show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_blog_user')), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::showAction',));
-        }
-
-        if (0 === strpos($pathinfo, '/article')) {
-            // acme_blog_article
-            if (preg_match('#^/article/(?P<alias>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_blog_article')), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::articleAction',));
-            }
-
-            // acme_blog_articles
-            if ($pathinfo === '/articles') {
-                return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::articlesAction',  '_route' => 'acme_blog_articles',);
-            }
-
-        }
-
-        // acme_blog_news
-        if ($pathinfo === '/news') {
-            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::newsAction',  '_route' => 'acme_blog_news',);
-        }
-
-        // acme_blog_admin
-        if ($pathinfo === '/admin') {
-            return array (  '_controller' => 'Acme\\AdminBundle\\Controller\\AdminController::adminAction',  '_route' => 'acme_blog_admin',);
-        }
-
         // acme_app_homepage
         if (0 === strpos($pathinfo, '/default') && preg_match('#^/default/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_app_homepage')), array (  '_controller' => 'Acme\\AppBundle\\Controller\\DefaultController::indexAction',));
+        }
+
+        // homepage
+        if ($pathinfo === '/app/example') {
+            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
         // _welcome
