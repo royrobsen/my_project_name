@@ -1,10 +1,18 @@
+acme_admin:
+    resource: "@AcmeAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_blog:
+    resource: "@AcmeBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
 acme_app:
     resource: "@AcmeAppBundle/Resources/config/routing.yml"
     prefix:   /
 
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation
+#app:
+ #   resource: @AppBundle/Controller/
+  #  type:     annotation
 
 acme_website:
     resource: "@AcmeDemoBundle/Resources/config/routing.yml"
