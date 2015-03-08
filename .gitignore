@@ -1,1 +1,9 @@
 /nbproject/private/
+/vendor/
+/app/logs
+/app/cache
+/app/config/parameters.ini
+/nbproject/private
+*.DS_Store
+*.swp
+*.Thumbs.db
