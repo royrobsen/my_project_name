@@ -1,0 +1,35 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>{% block title %}VfL Lohbrügge 3. Herren{% endblock %}</title>
+        <link href=" {{ asset('bundles/acmeblog/css/style.css') }} " rel="stylesheet" type="text/css" />
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+        <script src=" {{ asset('bundles/acmeblog/js/angular.js') }} "></script>
+        <script src=" {{ asset('bundles/acmeblog/js/controller.js') }} "></script>
+    </head>
+    <body ng-app="MyApp">
+        <div id="wrapper">
+            <div id="menu">
+                <ul>
+                    <li class="menu_link">
+                        <a href="/" >Home</a>
+                    </li>
+                    <li class="menu-link">
+                        <a href="mannschaft" >Mannschaft</a>    
+                            <ul>
+                                <li>
+                                    <a href='spieler'>Spieler</a>
+                                </li>
+                            </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id='content'>
+                <div id='body'>
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+    
+</html>

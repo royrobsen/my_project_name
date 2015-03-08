@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id='fullcontent'>
+        <h1>{{ article.0.headline }}</h1>
+        <ul class='list'>
+            <li style="list-style-image: url('{{ asset('bundles/acmeblog/images/date.png') }}');" title='Veröffentlicht'> {{ article.0.createdDate|date('d.m.y') }}</li>
+            <li style="list-style-image: url('{{ asset('bundles/acmeblog/images/author.png') }}')" title='Autor'>{{ article.0.author.firstName }} {{ article.0.author.name }}</li>
+            <li style="list-style-image: url('{{ asset('bundles/acmeblog/images/categorie.png') }}')" title='Kategorie'>{{ article.0.category.catName }}</li>
+        </ul>
+        {{ article.0.articleContent|raw}}
+    </div>
+    <div id='right_sector'>
+        <div class='rechtespalte'><h1>Nicht angemeldet</h1>
+            <table>
+                <tr>
+                    <td><a href='login'>Jetzt Einloggen</></td>
+                </tr> 
+            </table>
+        </div>    
+    </div>
+{% endblock %}  

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\BlogBundle\Entity\Events" table="events">
+    <unique-constraints>
+      <unique-constraint name="id_2" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="string" column="title" length="100" nullable="false"/>
+    <field name="alias" type="string" column="alias" length="50" nullable="false"/>
+    <field name="access" type="integer" column="access" nullable="false"/>
+    <field name="createdDate" type="datetime" column="created_date" nullable="false"/>
+    <field name="createdBy" type="integer" column="created_by" nullable="false"/>
+    <field name="modifiedDate" type="datetime" column="modified_date" nullable="false"/>
+    <field name="modifiedBy" type="integer" column="modified_by" nullable="false"/>
+    <field name="eventcatId" type="integer" column="eventcat_id" nullable="false"/>
+    <field name="startdate" type="datetime" column="startdate" nullable="false"/>
+    <field name="enddate" type="datetime" column="enddate" nullable="false"/>
+    <field name="period" type="text" column="period" nullable="false"/>
+    <field name="next" type="datetime" column="next" nullable="false"/>
+    <field name="place" type="string" column="place" length="80" nullable="false"/>
+    <field name="city" type="string" column="city" length="50" nullable="false"/>
+    <field name="address" type="string" column="address" length="150" nullable="false"/>
+    <field name="zipcode" type="string" column="zipcode" length="5" nullable="false"/>
+    <field name="description" type="text" column="description" length="16777215" nullable="false"/>
+    <field name="intervall" type="integer" column="intervall" nullable="false"/>
+  </entity>
+</doctrine-mapping>

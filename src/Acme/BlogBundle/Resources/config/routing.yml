@@ -1,0 +1,27 @@
+acme_blog_homepage:
+    path:     /
+    defaults: { _controller: AcmeBlogBundle:Default:index }
+    
+acme_blog_user:
+    path:     /show/{id}
+    defaults: { _controller: AcmeBlogBundle:Default:show }
+
+acme_blog_article:
+    path:   /article/{alias}
+    defaults: { _controller: AcmeBlogBundle:Default:article }
+    
+acme_blog_articles:
+    path:   /articles
+    defaults: { _controller: AcmeBlogBundle:Default:articles }
+    
+acme_blog_news:
+    path:   /news
+    defaults: { _controller: AcmeBlogBundle:Default:news }
+
+##
+## Admin routes
+##   
+
+acme_blog_admin:
+    path:   /admin
+    defaults: { _controller: AcmeAdminBundle:Admin:admin }

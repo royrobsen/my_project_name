@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\BlogBundle\Entity\Xrx6tStats" table="xrx6t_stats">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="userid" type="integer" column="userid" nullable="false"/>
+    <field name="goals" type="integer" column="goals" nullable="false"/>
+    <field name="games" type="integer" column="games" nullable="false"/>
+    <field name="bildurl" type="text" column="bildurl" length="65535" nullable="false"/>
+    <field name="position" type="text" column="position" length="65535" nullable="false"/>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id='fullcontent' ng-controller='PaginationCtrl'>
+        <h1>Neueste Beiträge</h1>
+            <div ng-repeat="item in items | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
+                <h3><a href="article/[[ item.alias ]]"> [[item.headline]]</a></h3>
+              
+            </div>                        
+            <div id="prev-page" class="nav-btn" ng-class="prevPageDisabled()">
+                <button id="prev-btn" ng-click="prevPage()">Vorherige Seite</button>
+            </div>
+            <div id="next-page" class="nav-btn" ng-class="nextPageDisabled()">
+                <button id="next-btn" ng-click="nextPage()">Nächste Seite</button>
+            </div>
+    </div>
+    <div id='right_sector'>
+        <div class='rechtespalte'><h1>Nicht angemeldet</h1>
+            <table>
+                <tr>
+                    <td><a href='login'>Jetzt Einloggen</></td>
+                </tr> 
+            </table>
+        </div>    
+    </div>
+{% endblock %}  
