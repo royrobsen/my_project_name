@@ -1,0 +1,503 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+html, body
+{
+    margin: 0 auto;
+    background: url('../images/bg.jpg') center center fixed;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-color: #030a1a;
+     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+        src='../images/bg.jpg',
+        sizingMethod='scale');
+}
+
+#menu{
+    clear: both;
+    margin: 0 auto;
+    width: 1000px;
+    max-width: 1000px;
+    z-index:100;
+    position: relative;
+    margin-top: 5em;
+    background: rgba(18,18,18,0.75);
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px #999;
+}
+
+#menu ul {
+    padding: 0px;
+    margin: 0px;  
+}
+#menu ul:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+    #menu ul,#menu ul li{
+}
+    #menu ul li {
+    list-style: none;
+    float:left;
+}
+
+#menu ul li a {
+    text-decoration: none;
+    display: block;
+    color: #fff;
+    padding: 14px 34px 14px 34px;
+}
+#menu ul li:hover > ul {
+    visibility: visible;
+}
+#menu ul li ul{
+    display: inline;
+    visibility: hidden;
+    position: absolute;
+    padding:0px;
+}
+#menu ul li ul li{
+    float: none;
+}
+#menu ul li ul li a:hover{
+    color: #FAFAFA;
+}
+
+#menu ul {
+    padding: 0px;
+    margin: 0px;
+
+}
+#menu ul li {
+    list-style: none;
+    float:left;
+    border-right: 1px solid #dfdfdf;
+}
+#menu ul li a {
+    text-decoration: none;
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    padding: 14px 34px 14px 34px;
+
+    -webkit-transition: background 0.3s ease-out 0s;
+    -moz-transition: background 0.3s ease-out 0s;
+    -o-transition: background 0.3s ease-out 0s;
+    transition: background 0.3s ease-out 0s;
+}
+
+#menu ul li.cat4 a, #menu ul li.cat4 > ul li a {
+    background: rgba(0,10,30,0.85);
+    color: #FAFAFA;
+    font-weight: bold;
+}
+
+#menu ul li.cat1:hover a, #menu ul li.cat1:hover > ul li a  {
+    background: rgba(0,0,0,0.85);
+}
+#menu ul li.cat2:hover a, #menu ul li.cat2:hover > ul li a  {
+    background: rgba(0,0,0,0.85); 
+}         
+#menu ul li.cat3:hover a, #menu ul li.cat3:hover > ul li a {
+    background: rgba(0,0,0,0.85);  
+}
+#menu ul li.cat4:hover a, #menu ul li.cat4:hover > ul li a {
+    background: rgba(0,0,0,0.85);  
+    color: #333;
+}
+
+#menu ul li.cat5:hover a, #menu ul li.cat5:hover > ul li a {
+    background-color: #332B40;
+}
+#menu ul li:hover > a {
+    color: #FAFAFA;
+}
+#menu ul li ul li a {
+    color: #FAFAFA;
+}
+#menu ul li ul li a:hover{
+    color: #FAFAFA;
+    background: rgba(0,0,0,0.85) !important;
+}
+
+#body   {
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 1000px;
+	display: table;
+}
+
+#leftsection{
+    min-height: 800px;
+    width: 485px;
+	display: table-cell;
+    background: rgba(0,10,30,0.85);
+    background: rgba(18,18,18,0.75);
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px #999;
+}
+
+#rightsection {
+	display: table-cell;
+	border-spacing: 8px 32px;
+    background: rgba(0,10,30,0.85);
+    background: rgba(18,18,18,0.75);
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px #999;
+}
+
+#newsblock  {
+    color: #D9D2DC;
+    font-size: 12px;
+    padding: 10px 30px 30px 30px;
+    margin-top: 5px;
+}
+
+#newsblock h1   {
+    border-bottom: 1px solid grey;
+}
+
+#newsblock h3   {
+    font-size: 16px;
+    margin-bottom: 3px;
+    color: #F3F3F3;
+}
+
+#newsblock a {
+    color: #F3F3F3;
+    text-decoration: none;
+}
+
+.rechtekolumne    {
+    margin-top: 5px;
+    width: 450px;
+    color: #D9D2DC;
+    font-size: 12px;
+    display: inline-block;
+    padding: 10px 30px 30px 30px;  
+    position: relative;
+}
+
+.rechtekolumne h1, .rechtespalte h1{
+    border-bottom: 1px solid grey;    
+}
+
+.rechtekolumne a {
+    color: #fafafa;    
+}
+
+.rechtespalte a {
+    color: #fafafa;    
+}
+.rechtekolumne #termintabelle td.erstezelle   {
+    vertical-align: top;
+    width: 40%;
+}
+
+.rechtekolumne #termintabelle td.zweitezelle   {
+    vertical-align: top;  
+}
+
+.rechtekolumne #termintabelle .secondrow {
+    margin-bottom: 20px;
+}
+
+.rechtekolumne #ligatabelle {
+    width: 100%;
+}
+
+.rechtekolumne #ligatabelle .aligncenter    {
+    text-align: center;
+}
+
+.rechtekolumne #ligatabelle .alignleft    {
+    text-align: left;
+}
+
+.rechtekolumne p {
+    text-align: center;
+    padding: 0;
+    margin: 0;   
+}
+
+#bildblock  {
+    height: 300px;
+    background: url('../images/mannschaftsfoto.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+#rand{
+    background: rgba(0,0,0,0.6);
+    width: 50%;
+    float: right;
+    height: 300px;
+    margin-top: 20px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px #999;
+    padding: 3px; 
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;   
+}
+
+#mehranzeigen, #wenigeranzeigen   {
+    cursor: pointer;
+}
+
+#content {
+    width: 1000px;
+    margin: auto;
+
+}
+#fullcontent    {
+    margin-top: 5px;
+    background: rgba(18,18,18,0.75);
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px #999;
+    width: 640px;
+    color: #D9D2DC;
+    font-size: 14px;
+    line-height: 25px;
+    display: inline-block;
+    padding: 20px 30px 20px 30px;
+    border-radius: 3px;
+	display: table-cell;
+	vertical-align: top;
+}
+
+#fullcontent h1 {
+	line-height: 30px
+}
+
+#fullcontent a   {
+    color: #fff;        
+}
+
+#fullcontent .list {
+	padding-left: 25px;
+	border-bottom: 1px solid #FAFAFA;
+	min-height: 25px;
+}
+
+#fullcontent .list li{
+	float: left;
+	padding-right: 30px;
+}
+
+.bild {
+    background-color: #333;
+    width: 200px;
+    height:150px !important;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px #333223;
+    padding: 5px;
+    margin-right:10px;
+    margin-bottom: 10px;   
+}
+
+.tabellestandard    {
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+.tabellestandard td {
+    min-width: 50%;
+}
+
+.tabellestandard a {
+    color: #fff;
+}
+
+#pagebuild  {
+    color: white;
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.playertable {
+    font-size: 11px;
+}
+
+.playertable th {
+    text-align: left;
+    font-size: 16px;
+}
+
+.playertable .tdfirstname, .tdsecondname {
+    min-width: 70px;
+}
+
+#tabellenansicht, #bilderansicht {
+    cursor: pointer;
+}
+
+.cellwrapper    {
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #fafafa;
+    color: #333;
+}
+
+#right_sector {
+    top: 5px;  
+    margin-top: 5px;
+    max-width: 274px;   
+	display: table-cell;
+    background: rgba(18,18,18,0.75);
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px #999;
+    border-radius: 3px;
+	vertical-align: top;
+}
+
+.rechtespalte  {
+    color: #D9D2DC;
+    font-size: 12px;
+    padding: 10px 30px 30px 30px;
+    width: 235px;    
+    margin-bottom: 5px;
+	display: table-cell;
+	float: left;
+}
+
+.rechtespalte #field    {
+    border: 1px solid grey;
+}
+
+.rechtespalte #goal{
+    margin: 0 auto;
+    width: 40px;
+    height: 20px;
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+.rechtespalte #goal2{
+    margin: 0 auto;
+    width: 40px;
+    height: 20px;
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.rechtespalte .player {
+    text-align: center;
+    padding-top: 5px;
+    display: block;
+}
+
+.rechtespalte #field table {
+    width: 100%;
+}
+
+.rechtespalte #field td {
+    text-align: center;
+
+}
+
+
+.rechtespalte #funfer{
+    margin: 0 auto;
+    width: 60px;
+    height: 25px;
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.rechtespalte #sechzehner{
+    margin: 0 auto;
+    width: 85px;
+    height: 45px;
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.rechtespalte #funfer1{
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 60px;
+    height: 25px;
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+.rechtespalte #sechzehner1{
+    margin: 0 auto;
+    width: 85px;
+    height: 45px;
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+.rechtespalte #middleline   {
+    height: 1px;
+    width: 100%;
+    background-color: grey;
+}
+
+#galerie {
+    width:100%;
+    float: left;
+}
+
+.album {
+	width: 150px;
+	height: 160px;
+	float: left;
+	margin: 0px 40px 20px 0px;
+	position: relative;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px #999;
+	background: rgba(10,10,10,0.5);
+}
+
+.album p {
+	margin-top: -2px;
+	padding: 5px;
+    color: #FAFAFA;
+    text-align: center;
+    font-size: 16px;
+    width: 140px;
+}
+
+.album img {
+    margin-top: 10px;
+	position: absolute;
+	overflow: hidden;
+	clip: rect(20px 150px 150px 0px);
+	min-width: 150px;
+	min-height: 150px;
+	max-width: 200px;
+	max-height: 200px;
+	display: inline-block;
+}
+
+#footer    {
+    margin-top: 5px;
+    border-radius: 3px;
+    width: 1000px;
+    height: 40px;
+    float: left;
+    font-size: 14px;
+    line-height: 25px;
+    display: inline-block;
+    padding: 20px 30px 20px 30px;
+    border-radius: 3px;
+}
