@@ -5,7 +5,17 @@
         <link href=" {{ asset('bundles/acmeadmin/css/style-admin.css') }} " rel="stylesheet" type="text/css" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <script src=" {{ asset('bundles/acmeblog/js/angular.js') }} "></script>
-        <script src=" {{ asset('bundles/acmeblog/js/controller.js') }} "></script>
+        <link href=" {{ asset('bundles/acmeadmin/css/textAngular.min.css') }} " />
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src=" {{ asset('bundles/acmeadmin/js/ui-bootstrap.min.js') }} "></script>
+        <script src=" {{ asset('bundles/acmeadmin/js/textAngular.min.js') }} "></script>
+        <script src=" {{ asset('bundles/acmeadmin/js/textAngular-sanitize.min.js') }} "></script>
+        <script src=" {{ asset('bundles/acmeadmin/js/textAngular-rangy.min.js') }} "></script>
+        <script src=" {{ asset('bundles/acmeadmin/js/controller/app.js') }} "></script>
+        {% block javascripts %}
+        {% endblock %}
     </head>
     <body ng-app="MyApp">
         <div id='upper-div'>
@@ -14,39 +24,39 @@
         <div id='leftmenu' ng-controller="myCtrl">
             <h4><a>Dashboard</a></h4>
             <h4><a class='menulink' id='link-1' ng-click="openTab('tab one')">Beiträge</a></h4>
-        <div class='menudiv' id='div-1' ng-show="isOpenTab('tab one')" style='background: #333; padding: 10px; display: none;'>
+        <div class='menudiv' id='div-1' ng-show="isOpenTab('tab one')" style='background: #333; padding: 10px;'>
             <ul>
-                <li><a href='edit.php'>Alle anzeigen</a></li>
-                <li><a href='new-article.php'>Neu Erstellen</a></li>
-		<li><a>Kategorien</a></li>
-		<li><a>Papierkorb</a></li>
+                <li><a href='/admin/article/all'>Alle anzeigen</a></li>
+                <li><a href='/admin/article/new'>Neu Erstellen</a></li>
+		<li><a href='/admin/category/all'>Kategorien</a></li>
+		<li><a href='/admin/article/papierkorb'>Papierkorb</a></li>
             </ul>
         </div>
-            <h4><a class='menulink' id='link-2'>Termine</a></h4>
-        <div  class='menudiv' id='div-2' style='background: #333; padding: 10px; display: none;'>
+            <h4><a class='menulink' id='link-2' ng-click="openTab('tab two')">Termine</a></h4>
+        <div  class='menudiv' id='div-2' ng-show="isOpenTab('tab two')" style='background: #333; padding: 10px;'>
             <ul>
-                <li><a>Alle anzeigen</a></li>
-                <li><a>Neu Erstellen</a></li>
-		<li><a>Kategorien</a></li>
+                <li><a href='/admin/event/all'>Alle anzeigen</a></li>
+                <li><a href='/admin/event/new'>Neu Erstellen</a></li>
+		<li><a href='/admin/eventcategory/all'>Kategorien</a></li>
             </ul>
 	</div>
-            <h4><a class='menulink' id='link-3'>Spieler</a></h4>
-        <div  class='menudiv' id='div-3' style='background: #333; padding: 10px; display: none;'>
+            <h4><a class='menulink' id='link-3' ng-click="openTab('tab three')">Spieler</a></h4>
+        <div  class='menudiv' id='div-3' ng-show="isOpenTab('tab three')" style='background: #333; padding: 10px;'>
             <ul>
-                <li><a>Alle anzeigen</a></li>
+                <li><a href='/admin/players/all'>Alle anzeigen</a></li>
                 <li><a>Neu Erstellen</a></li>
             </ul>
         </div>
-            <h4><a class='menulink' id='link-4'>Benutzer</a></h4>
-        <div  class='menudiv' id='div-4' style='background: #333; padding: 10px; display: none;'>
+            <h4><a class='menulink' id='link-4' ng-click="openTab('tab four')">Benutzer</a></h4>
+        <div  class='menudiv' id='div-4' ng-show="isOpenTab('tab four')" style='background: #333; padding: 10px;'>
             <ul>
                 <li><a>Alle anzeigen</a></li>
                 <li><a>Neu Erstellen</a></li>
 		<li><a>Dein Profil</a></li>
             </ul>
         </div>
-            <h4><a class='menulink' id='link-4'>Medien</a></h4>
-        <div  class='menudiv' id='div-4' style='background: #333; padding: 10px; display: none;'>
+            <h4><a class='menulink' id='link-4'  ng-click="openTab('tab five')">Medien</a></h4>
+        <div  class='menudiv' id='div-4' ng-show="isOpenTab('tab five')" style='background: #333; padding: 10px;'>
             <ul>
                 <li><a>Medienübersicht</a></li>
                 <li><a>Datei hinzufügen</a></li>

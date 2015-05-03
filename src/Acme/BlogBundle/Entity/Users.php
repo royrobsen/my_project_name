@@ -3,11 +3,12 @@
 namespace Acme\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Users
  */
-class Users
+class Users implements UserInterface, \Serializable
 {
     /**
      * @var string
@@ -93,7 +94,6 @@ class Users
      * @var integer
      */
     private $id;
-
 
     /**
      * Set username
@@ -517,4 +517,101 @@ class Users
     {
         return $this->article;
     }
+    /**
+     * @var \Acme\BlogBundle\Entity\UserGroups
+     */
+    private $group;
+
+
+    /**
+     * Set group
+     *
+     * @param \Acme\BlogBundle\Entity\UserGroups $group
+     * @return Users
+     */
+    public function setGroup(\Acme\BlogBundle\Entity\UserGroups $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \Acme\BlogBundle\Entity\UserGroups 
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+    
+    private $attachment;
+        
+
+    /**
+     * Set attachment
+     */
+    public function setAttachment($attachment = null)
+    {
+        $this->attachment = $attachment;
+
+        return $this;
+    }
+
+    /**
+     * Get attachment
+     */
+    public function getAttachment()
+    {
+        return $this->attachment;
+    }   
+    
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getPassword()
+    {
+        return $this->passkeyword;
+    }
+    
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+    }  
+    
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->passkeyword,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->passkeyword,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
+    }
+    
 }

@@ -1,3 +1,145 @@
-acme_admin_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: AcmeAdminBundle:Default:index }
+
+#
+# Article actions 
+#
+
+acme_article_all:
+    path:     /admin/article/all
+    defaults: { _controller: AcmeAdminBundle:Article:all }
+    
+acme_article_papierkorb:
+    path:     /admin/article/papierkorb
+    defaults: { _controller: AcmeAdminBundle:Article:papierkorb }
+   
+acme_article_jsonalldumpedarticles:
+    path:     /admin/jsonalldumpedarticles
+    defaults: { _controller: AcmeAdminBundle:Article:jsonalldumpedarticles }
+    
+acme_article_jsonallarticles:
+    path:     /admin/jsonallarticles
+    defaults: { _controller: AcmeAdminBundle:Article:jsonallarticles }
+
+acme_article_new:
+    path:     /admin/article/new
+    defaults: { _controller: AcmeAdminBundle:Article:new }
+    
+acme_article_delete:
+    path:     /admin/article/delete/{id}
+    defaults: { _controller: AcmeAdminBundle:Article:delete }
+    
+acme_article_bin:
+    path:     /admin/article/bin/{id}
+    defaults: { _controller: AcmeAdminBundle:Article:bin }
+
+acme_article_article:
+    path:     /admin/article/{id}
+    defaults: { _controller: AcmeAdminBundle:Article:article }
+
+    
+#   
+# Category actions
+#   
+
+acme_category_all:
+    path:     /admin/category/all
+    defaults: { _controller: AcmeAdminBundle:Category:all }
+    
+acme_category_categoriesjson:
+    path:     /admin/categoriesjson
+    defaults: { _controller: AcmeAdminBundle:Category:categoriesjson }
+    
+acme_category_new:
+    path:     /admin/category/new
+    defaults: { _controller: AcmeAdminBundle:Category:new }
+    
+acme_category_deletecategory:
+    path:     /admin/category/delete/{id}
+    defaults: { _controller: AcmeAdminBundle:Category:delete }
+
+acme_category_category:
+    path:     /admin/category/{id}
+    defaults: { _controller: AcmeAdminBundle:Category:category }
+    
+#    
+# Event actions   
+#
+
+acme_event_all:
+    path:     /admin/event/all
+    defaults: { _controller: AcmeAdminBundle:Event:all }
+
+acme_event_jsonevents:
+    path:     /admin/jsonevents
+    defaults: { _controller: AcmeAdminBundle:Event:jsonevents }
+    
+acme_event_new:
+    path:     /admin/event/new
+    defaults: { _controller: AcmeAdminBundle:Event:new }
+    
+acme_event_delete:
+    path:     /admin/event/delete/{id}
+    defaults: { _controller: AcmeAdminBundle:Event:delete }
+
+acme_event_event:
+    path:     /admin/event/{id}
+    defaults: { _controller: AcmeAdminBundle:Event:event } 
+    
+#   
+# Eventcategory actions
+#   
+
+acme_eventcategory_all:
+    path:     /admin/eventcategory/all
+    defaults: { _controller: AcmeAdminBundle:EventCategory:all }
+    
+acme_eventcategory_eventcategoryjson:
+    path:     /admin/eventcategoryjson
+    defaults: { _controller: AcmeAdminBundle:EventCategory:eventcategoryjson }
+    
+acme_eventcategory_new:
+    path:     /admin/eventcategory/new
+    defaults: { _controller: AcmeAdminBundle:EventCategory:new }
+    
+acme_eventcategory_deletecategory:
+    path:     /admin/eventcategory/delete/{id}
+    defaults: { _controller: AcmeAdminBundle:EventCategory:delete }
+
+acme_eventcategory_category:
+    path:     /admin/eventcategory/{id}
+    defaults: { _controller: AcmeAdminBundle:EventCategory:eventcategory }
+
+#   
+# Player actions
+#   
+
+acme_players_all:
+    path:     /admin/players/all
+    defaults: { _controller: AcmeAdminBundle:Players:all }
+    
+acme_players_json:
+    path:     /admin/players/json
+    defaults: { _controller: AcmeAdminBundle:Players:json }
+    
+acme_players_new:
+    path:     /admin/players/new
+    defaults: { _controller: AcmeAdminBundle:Players:new }
+    
+acme_players_deletecategory:
+    path:     /admin/players/delete/{id}
+    defaults: { _controller: AcmeAdminBundle:Players:delete }
+
+acme_players_player:
+    path:     /admin/players/{id}
+    defaults: { _controller: AcmeAdminBundle:Players:player }
+    
+#   
+# Mail actions
+#   
+
+acme_passwortreset:
+    path:     /passwortreset/{id}
+    defaults: { _controller: AcmeAdminBundle:Mail:passwortreset }
+    
+acme_passwortreset:
+    path:     /pwerstellen/{token}
+    defaults: { _controller: AcmeAdminBundle:Mail:pwerstellen }

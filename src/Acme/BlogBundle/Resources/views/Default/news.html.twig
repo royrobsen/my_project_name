@@ -1,26 +1,40 @@
 {% extends 'base.html.twig' %}
-
+{% block javascripts %}
+<script src=" {{ asset('bundles/acmeblog/js/controller/newsController.js') }} "></script>
+{% endblock %}
 {% block body %}
-    <div id='fullcontent' ng-controller='PaginationCtrl'>
-        <h1>Neueste Beiträge</h1>
-            <div ng-repeat="item in items | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
-                <h3><a href="article/[[ item.alias ]]"> [[item.headline]]</a></h3>
-              
-            </div>                        
-            <div id="prev-page" class="nav-btn" ng-class="prevPageDisabled()">
-                <button id="prev-btn" ng-click="prevPage()">Vorherige Seite</button>
+    <div class="container" ng-controller='PaginationCtrl' ng-init="showData()">
+        <div class="col-xs-12 col-md-8">
+            <div class="box-blue">
+            <h1>Neueste Beiträge</h1>
+                <div ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize | filter:search" ng-class-odd="odd" ng-class-even="even">
+                    <h3><a href="/article/[[datalist.alias]]">[[datalist.headline]]</a></h3>
+                    [[datalist.articleContent | limitTo : 300 : 0 | htmlToPlaintext ]]...
+                </div>
             </div>
-            <div id="next-page" class="nav-btn" ng-class="nextPageDisabled()">
-                <button id="next-btn" ng-click="nextPage()">Nächste Seite</button>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <div class="box-blue">
+                <form novalidate class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <input class="form-control" type="text" ng-model="formInfo.search">
+                        <button ng-click="saveData()" type="submit" class="btn btn-success">Suchen</button>
+                    </div>
+                </form>
+                <div class="pagination pagination-center" ng-show="datalists.length" style="float: left; margin: 0;">
+                    <ul class="pagination-controle pagination">
+                        <li>
+                            <button type="button" class="btn-default" ng-disabled="curPage == 0" ng-click="curPage=curPage-1"> &lt; Zurück</button>
+                        </li>
+                         <li>
+                            <span style="float: none !important;">Seite [[curPage + 1]] von [[ numberOfPages() ]]</span>
+                        </li>
+                        <li>
+                            <button type="button" class="btn-default" ng-disabled="curPage >= datalists.length/pageSize - 1" ng-click="curPage = curPage+1">Weiter &gt;</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-    </div>
-    <div id='right_sector'>
-        <div class='rechtespalte'><h1>Nicht angemeldet</h1>
-            <table>
-                <tr>
-                    <td><a href='login'>Jetzt Einloggen</></td>
-                </tr> 
-            </table>
-        </div>    
+        </div>
     </div>
 {% endblock %}  

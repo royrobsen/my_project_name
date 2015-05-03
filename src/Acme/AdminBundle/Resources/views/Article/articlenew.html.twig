@@ -1,0 +1,84 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <h1>Beitrag bearbeiten</h1>
+	<button class='btn-primar'>Erstellen</button>
+	<div style="float: right; margin: 0 auto; width: 70px;"></div>
+            <div class='bigbox' ng-app="textAngularTest"  ng-controller="myCtrl">
+		<div class='box'>
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}	
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="message">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                         {{ form_widget(form.headline, { 'attr': {'class': 'text-input', 'style':'width: 100%; height: 1.7em; font-size: 1.2em; padding: 3px 8px; box-sizing: border-box;'} }) }}
+                        
+                        
+                        <div style='margin-top: 2em;'><text-angular ng-model="htmlVariable" ></text-angular></div>{{ form_widget(form.articleContent, { 'attr': {'ng-bind': 'htmlVariable', 'style': 'display: none;'} }) }}
+                </div>
+                <div class='sidebar'>
+			<div class='edit-box'>
+			<h4>
+				Veröffentlichen
+			</h4>
+                            <ul>
+                                <li>Status: {{ form_widget(form.state) }}</li>
+                                <li>Sichtbarkeit: {{form_widget(form.group, {'class':'text-input'})}}</li>
+                                <li>Veröffentlicht am: {{ form_widget(form.createdDate) }}</li>
+                                <li>Kategorie: {{form_widget(form.category, {'class':'text-input'})}}</li>
+                            </ul>
+                        </div>   
+                        <div class='action-box'>
+                            {{form_widget(form.save, { 'attr': {'class':'btn-primar', 'style':'float: left; background: #2ea2cc; color: #FAFAFA; font-weight: 300; min-height: 23px;'}} ) }}
+                            <div style="clear:both;">
+                            </div>
+                        </div>
+                </div>
+                <div class='sidebar'>
+                    <div class='edit-box'>
+                    <h4>
+                        Aufstellung
+                    </h4>
+                        <h5>Tor <a ng-click="openTab('box tw')">Bearbeiten</a></h5>
+                        <div ng-show="isOpenTab('box tw')">{{ form_widget(form.aufgestellt.tw, { 'attr': {'class': 'text-input', 'placeholder':'Torwart'} }) }}</div>
+                        <h5>Abwehr <a ng-click="openTab('box ab')">Bearbeiten</a></h5>
+                        <div ng-show="isOpenTab('box ab')">{{ form_widget(form.aufgestellt.lav, { 'attr': {'class': 'text-input', 'placeholder':'L. Außenverteidiger'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.liv, { 'attr': {'class': 'text-input', 'placeholder':'L. Innenverteidiger'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.iv, { 'attr': {'class': 'text-input', 'placeholder':'Libero'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.riv, { 'attr': {'class': 'text-input', 'placeholder':'R. Innenverteidiger'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.rav, { 'attr': {'class': 'text-input', 'placeholder':'R. Außenverteidiger'} }) }} </div>
+                        <h5>Mittelfeld <a ng-click="openTab('box mi')">Bearbeiten</a></h5>
+                        <div ng-show="isOpenTab('box mi')">{{ form_widget(form.aufgestellt.lm, { 'attr': {'class': 'text-input', 'placeholder':'L. Mittelfeld'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.zlm, { 'attr': {'class': 'text-input', 'placeholder':'L. Zentral'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.zrm, { 'attr': {'class': 'text-input', 'placeholder':'R. Zentral'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.zdm, { 'attr': {'class': 'text-input', 'placeholder':'Zentral defensiv'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.zom, { 'attr': {'class': 'text-input', 'placeholder':'Zentral offensiv'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.rm, { 'attr': {'class': 'text-input', 'placeholder':'R. Mittelfeld'} }) }}</div>
+                        <h5>Sturm <a ng-click="openTab('box st')">Bearbeiten</a></h5>
+                        <div ng-show="isOpenTab('box st')">{{ form_widget(form.aufgestellt.ls, { 'attr': {'class': 'text-input', 'placeholder':'Linker Stürmer'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.ms, { 'attr': {'class': 'text-input', 'placeholder':'Mittelstürmer'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.rs, { 'attr': {'class': 'text-input', 'placeholder':'Rechter Stürmer'} }) }}</div>
+                        <h5>Trainer <a ng-click="openTab('box tr')">Bearbeiten</a></h5>
+                        <div ng-show="isOpenTab('box tr')">{{ form_widget(form.aufgestellt.coach, { 'attr': {'class': 'text-input', 'placeholder':'Trainer'} }) }} </div>
+                        <h5>Ersatzbank <a ng-click="openTab('box er')">Bearbeiten</a></h5>
+                        <div  ng-show="isOpenTab('box er')">{{ form_widget(form.aufgestellt.sub1, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.sub2, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.sub3, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.sub4, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.sub5, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.sub6, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.sub7, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} </div>
+                        <h5>Wechsel <a ng-click="openTab('box ch')">Bearbeiten</a></h5>
+                        <div ng-show="isOpenTab('box ch')">{{ form_widget(form.aufgestellt.ch1, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.ch2, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.ch3, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.ch4, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.ch5, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
+                        {{ form_widget(form.aufgestellt.ch6, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }}</div>
+                    </div>
+                </div>
+                    {{ form_end(form) }}
+            </div>
+{% endblock %}  

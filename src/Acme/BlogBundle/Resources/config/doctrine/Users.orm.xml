@@ -20,11 +20,17 @@
     <field name="position" type="string" column="position" length="20" nullable="false"/>
     <field name="fotoid" type="integer" column="fotoid" nullable="false"/>
     <field name="ersatzbank" type="integer" column="ersatzbank" nullable="false"/>
-    
     <one-to-many
         field="article"
         target-entity="Articles"
-        mapped-by="users" />
-    
+        mapped-by="author" />
+    <many-to-one
+        field="group"
+        target-entity="UserGroups"
+        inversed-by="users"
+        join-column="groupName">
+
+        <join-column name="group_id" referenced-column-name="id" />
+    </many-to-one>
   </entity>
 </doctrine-mapping>

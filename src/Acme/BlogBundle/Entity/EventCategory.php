@@ -80,4 +80,49 @@ class EventCategory
     {
         return $this->id;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $event;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add event
+     *
+     * @param \Acme\BlogBundle\Entity\Events $event
+     * @return EventCategory
+     */
+    public function addEvent(\Acme\BlogBundle\Entity\Events $event)
+    {
+        $this->event[] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Remove event
+     *
+     * @param \Acme\BlogBundle\Entity\Events $event
+     */
+    public function removeEvent(\Acme\BlogBundle\Entity\Events $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
 }

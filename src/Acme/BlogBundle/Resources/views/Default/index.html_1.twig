@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+                    <div id="leftsection">
+                        <div id='newsblock' ng-controller='PaginationCtrl'>
+                            <h1>Aktuelle Neuigkeiten</h1>
+                                    <div ng-repeat="item in items | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
+                                        <h3><a href="article/[[ item.alias ]]"> [[item.headline]]</a></h3>
+                                        [[item.articleContent | limitTo : 300 : 0 | htmlToPlaintext ]]...
+                                    </div>                        
+                                    <div id="prev-page" class="nav-btn" ng-class="prevPageDisabled()">
+                                        <button id="prev-btn" ng-click="prevPage()">Vorherige Seite</button>
+                                    </div>
+                                    <div id="next-page" class="nav-btn" ng-class="nextPageDisabled()">
+                                        <button id="next-btn" ng-click="nextPage()">Nächste Seite</button>
+                                    </div>
+                        </div>
+                    </div>
+                    <div id='rightsection'>
+                        <div class="rechtekolumne">
+                            <h1>Login</h1>
+                                <form action='logincheck.php' method='post'>
+                                    <table>
+                                        <tr>
+                                            <td>Benutzername</td>
+                                            <td>Passwort</td>
+                                        </tr> 
+                                        <tr>
+                                            <td><input name='username' required='required'/></td>
+                                            <td><input name='password' type='password' required='required'/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type='submit' value='Login'/></td>
+                                        </tr>  
+                                    </table>
+                                </form>
+                        </div>
+                        <div class="rechtekolumne">
+                            <h1>N&auml;chste Termine</h1>
+                                <table id='termintabelle' cellpadding="10px">
+                                    {% for event in events %}
+                                    <tr>
+                                        <td colspan='2' class='erstezelle'>
+                                            <a href='termine/ {{ event.alias }} '> {{ event.title }} </a>
+                                        </td>
+                                        <td class='zweitezelle'>
+                                            Wann: {{ event.next|date('d.m.y') }} um {{ event.next|date('H:i') }} Uhr <br />
+                                            Wo: {{ event.address }}, {{ event.zipcode }} {{ event.city }} 
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                        </div>
+                    </div>
+{% endblock %}               

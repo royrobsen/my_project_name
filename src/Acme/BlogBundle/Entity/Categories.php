@@ -153,4 +153,32 @@ class Categories
     {
         return $this->article;
     }
+    /**
+     * @var \Acme\BlogBundle\Entity\UserGroups
+     */
+    private $group;
+
+
+    /**
+     * Set group
+     *
+     * @param \Acme\BlogBundle\Entity\UserGroups $group
+     * @return Categories
+     */
+    public function setGroup(\Acme\BlogBundle\Entity\UserGroups $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \Acme\BlogBundle\Entity\UserGroups 
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
 }

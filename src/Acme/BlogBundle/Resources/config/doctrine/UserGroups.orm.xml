@@ -5,5 +5,21 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="groupName" type="text" column="group_name" length="65535" nullable="false"/>
+    <one-to-many
+        field="article"
+        target-entity="Articles"
+        mapped-by="group" />
+    <one-to-many
+        field="category"
+        target-entity="Categories"
+        mapped-by="group" />
+    <one-to-many
+        field="event"
+        target-entity="Events"
+        mapped-by="group" />
+    <one-to-many
+        field="users"
+        target-entity="Users"
+        mapped-by="group" />
   </entity>
 </doctrine-mapping>

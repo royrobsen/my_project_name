@@ -1,14 +1,14 @@
 # This file is auto-generated during the composer install
 parameters:
     database_driver: pdo_mysql
-    database_host: vfldb
+    database_host: localhost
     database_port: null
-    database_name: vfldb
-    database_user: vfldb
-    database_password: vfldb
+    database_name: vfldepr
+    database_user: root
+    database_password: null
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
-    locale: en
+    mailer_host: smtp.mandrillapp.com
+    mailer_user: no-reply@team-equipment.de
+    mailer_password: vsKtWcgutKKboNMZB-nbSA
+    locale: de
     secret: 7db432e8e830ebee2609d7f5f1f5d3b3bbba8f93

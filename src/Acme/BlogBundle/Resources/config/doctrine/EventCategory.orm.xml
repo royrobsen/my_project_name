@@ -9,5 +9,9 @@
     </id>
     <field name="title" type="text" column="title" length="65535" nullable="false"/>
     <field name="state" type="boolean" column="state" nullable="false"/>
+    <one-to-many
+        field="event"
+        target-entity="Events"
+        mapped-by="eventcategory" />
   </entity>
 </doctrine-mapping>

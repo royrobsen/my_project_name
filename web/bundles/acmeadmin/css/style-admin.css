@@ -1,9 +1,8 @@
 html, body
 {
-	height:100%;
+    height:100%;
     margin: 0;
     font-family: "Open Sans",sans-serif;
-	background: none repeat scroll 0 0 #f1f1f1;
 }
 
 #upper-div{
@@ -12,17 +11,17 @@ html, body
     width: 100%;
     position: fixed;
     height: 40px;
-	z-index: 100;
+    z-index: 100;
 }
 
 #upper-div h2   {
     margin: 0;
-	font-size: 14px;
-	padding: 10px;
+    font-size: 14px;
+    padding: 10px;
 }
 
 #upper-div a {
-	color: #FAFAFA;
+    color: #FAFAFA;
 }
 
 #leftmenu   {
@@ -30,41 +29,44 @@ html, body
     background: #222;
     color: #FAFAFA;
     font-size: 13px;
-	font-weight: 100;
-	min-width: 120px;
-	position: absolute;
-	position: fixed;
-	top: 40px;
+    font-weight: 100;
+    min-width: 120px;
+    position: absolute;
+    position: fixed;
+    top: 40px;
     bottom: 0;
     left: 0;
 }
 
 #leftmenu h4 {
-	padding: 5px 5px 5px 10px;
-	margin: 0;
-	font-weight: 400;
-	line-height: 2em;
+    padding: 5px 5px 5px 10px;
+    margin: 0;
+    font-weight: 400;
+    line-height: 2em;
 }
 
 #leftmenu ul {
     list-style: none;
     margin: 0;
     padding: 0;
-	line-height: 2em;
+    line-height: 2em;
 }
 
 #leftmenu li {
-	width: 100%;
-	color: #bbb;
+    width: 100%;
+    color: #bbb;
 }
 
 #leftmenu a {
-	cursor: pointer;
-	display: block;
+    cursor: pointer;
+    display: block;
+    color: #FAFAFA;
+    font-size: 0.9em;
+    text-decoration: none;
 }
 
 #leftmenu h4:hover {
-	background: #555;
+    background: #555;
 }
 
 .menudiv li a {
@@ -73,7 +75,7 @@ html, body
 }
 
 .menudiv li a:hover {
-	color: #0074a2;
+	color: #0074a2 !important;
 }
 
 #content    {
@@ -91,7 +93,7 @@ html, body
 	font-weight: 400;
 }
 
-#content table {
+#content #article-table {
 	float: left;
 	margin-top: 20px;
 	background: none repeat scroll 0 0 #fff;
@@ -99,15 +101,15 @@ html, body
 	text-align: left;
 }
 
-#content table .even_row {
+.even {
 	background: #f9f9f9;
 }
 
-#content table .odd_row {
+#content #article-table .odd_row {
 	background: #f9f9f9;
 }
 
-#content table tr, #content table td {
+#content #article-table tr, #content #article-table td {
 	padding: 8px 10px;
 	font-size: 13px;
 	vertical-align: top;
@@ -220,7 +222,7 @@ html, body
 	height: 500px;
 }
 
-.btn-primary {
+.btn-primar {
 	float: left; 
 	min-height: 30px; 
 	color: #444; 
@@ -277,17 +279,19 @@ html, body
 	float: left;
 	overflow: hidden;
 	width: auto;
+        max-width: 70%;
 }
 
 .sidebar {
-	float: right;
-	min-width: 280px;
+	float: left;
+        width: 22%;
 	background: #FFF;
 	border: 1px solid #E5E5E5;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 	font-size: 12px;
 	color: #444;
 	margin-bottom: 15px;
+        margin-left: 1em;
 	
 }
 
@@ -295,6 +299,7 @@ html, body
 	color: #0074a2;
 	text-decoration: underline;
 	cursor: pointer;
+        float: right;
 }
 
 .sidebar a:hover {
@@ -356,13 +361,52 @@ html, body
 }
 
 .message {
-    display: none;
     margin: 0 0 13px;
     padding: 10px;
     border: solid 1px #bd8;
-	background-color: #efa;
+    background-color: #efa;
+    width: 100%;
+    margin-top: 10px;
+    float: left;
 }
 
 #mFail {
 	background-color: #E55451;
+}
+
+.ta-editor {
+  min-height: 500px;
+  height: auto;
+  overflow: auto;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+.ta-toolbar {
+	background-color: #F0F0F0;
+	padding: 10px 10px 5px;
+	margin-left: 0px; /* Override bootstrap */
+	border: 1px solid #EEE;
+}
+
+.ta-toolbar .btn-group {
+	margin-bottom: 5px;
+}
+
+.ta-editor, .white-box {
+	padding: 10px;
+	background-color: #FFF;
+	border: 1px solid #EEE;
+}
+
+textarea.ta-bind {
+	width: 100%;
+}
+
+.col-md-6 {
+    width: 80% !important;
+}
+
+#events_startdate {
+    width:50%;
 }

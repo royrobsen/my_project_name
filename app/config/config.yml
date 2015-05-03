@@ -24,6 +24,8 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+    serializer:
+        enabled: true
 
 # Twig Configuration
 twig:
@@ -63,7 +65,14 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
-
+        dql:
+            string_functions:
+                test_string: AppBundle\DQL\StringFunction
+                second_string: AppBundle\DQL\SecondStringFunction
+            numeric_functions:
+                test_numeric: AppBundle\DQL\NumericFunction
+            datetime_functions:
+                test_datetime: AppBundle\DQL\DatetimeFunction
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -71,3 +80,26 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+sensio_framework_extra:
+    view:
+        annotations: false
+    
+fos_rest:
+    routing_loader:
+        default_format: json
+        
+services:
+    serializer.method:
+        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+    serializer.encoder.json:
+        class: Symfony\Component\Serializer\Encoder\JsonEncoder
+    serializer:
+        class: Symfony\Component\Serializer\Serializer
+        arguments:
+            - [@serializer.method]
+            - {json: @serializer.encoder.json }
+    get_set_method_normalizer:
+      class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+      tags:
+         - { name: serializer.normalizer }

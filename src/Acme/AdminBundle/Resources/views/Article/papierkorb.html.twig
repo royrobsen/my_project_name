@@ -1,0 +1,46 @@
+{% extends 'adminbase.html.twig' %}
+{% block javascripts %}
+<script src=" {{ asset('bundles/acmeadmin/js/controller/papierkorbController.js') }} "></script>
+{% endblock %}
+{% block body %}
+    <h1>Beiträge</h1>
+	<button class='btn-primar'>Erstellen</button>
+<div ng-controller='PaginationCtrl' ng-init="showData()">
+        <div class="pagination pagination-centered" ng-show="datalists.length" style="float: right; margin:0;">
+            <ul class="pagination-controle pagination">
+                <li>
+                    <button type="button" class="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1"> &lt; Zurück</button>
+                </li>
+                 <li>
+                    <span style="float: none !important;">Seite [[curPage + 1]] von [[ numberOfPages() ]]</span>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-primary" ng-disabled="curPage >= datalists.length/pageSize - 1" ng-click="curPage = curPage+1">Weiter &gt;</button>
+                </li>
+            </ul>
+        </div>
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="message">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            <table id='article-table' width="100%">
+                <tr>
+                    <th></th>
+                    <th>Titel</th>
+                    <th>Autor</th>
+                    <th>Kategorie</th>
+                    <th>Datum</th>
+                    <th>Status</th>
+                </tr>
+                <tr ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td><input type="checkbox" value="[[datalist.id]]"></td>
+                    <td><b><a href="[[datalist.id]]">[[datalist.headline]]</a></b><div class="actions_div"><a href="[[datalist.id]]">Bearbeiten</a>  |  <a style="color: red;" href="delete/[[datalist.id]]">Löschen</a>  |  <a href="/article/[[datalist.alias]]">Anschauen</a></div></td>
+                    <td>[[datalist.author.firstName]] [[datalist.author.name]]</td>
+                    <td>[[datalist.category.catName]]</td>
+                    <td>[[datalist.createdDate.date|brDateFilter|date:"dd.MM.yy"]]</td>
+                    <td>[[datalist.state.status]]</td>
+                </tr>
+            </table>
+        </div>
+{% endblock %}  

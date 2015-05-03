@@ -10,30 +10,53 @@
     <field name="access" type="integer" column="access" nullable="false"/>
     <field name="createdDate" type="datetime" column="created_date" nullable="false"/>
     <field name="createdBy" type="integer" column="created_by" nullable="false"/>
-    <field name="modifiedDate" type="datetime" column="modified_date" nullable="false"/>
-    <field name="modifiedBy" type="string" column="modified_by" length="50" nullable="false"/>
-    <field name="alias" type="string" column="alias" length="50" nullable="false"/>
+    <field name="modifiedDate" type="datetime" column="modified_date" nullable="true"/>
+    <field name="modifiedBy" type="string" column="modified_by" length="50" nullable="true"/>
+    <field name="alias" type="string" column="alias" length="50" nullable="true"/>
     <field name="status" type="integer" column="status" nullable="false"/>
-    <field name="aufstellung" type="text" column="aufstellung" length="16777215" nullable="false"/>
-    <field name="auswechselspieler" type="text" column="auswechselspieler" length="16777215" nullable="false"/>
-    <field name="wechsel" type="text" column="wechsel" length="16777215" nullable="false"/>
-    <field name="papierkorb" type="boolean" column="papierkorb" nullable="false"/>
+    <field name="aufstellungId" type="integer" column="aufstellung_id" nullable="true"/>
     <many-to-one
         field="category"
         target-entity="Categories"
-        inversed-by="articles"
+        inversed-by="article"
         join-column="cat_name">
-        
-        <join-column name="cat_Id" referenced-column-name="id" />
+
+        <join-column name="cat_id" referenced-column-name="id" />
     </many-to-one>
     <many-to-one
         field="author"
         target-entity="Users"
-        inversed-by="articles"
+        inversed-by="article"
         join-column="name, first_name">
-        
-        <join-column name="created_by" referenced-column-name="id" />   
-    </many-to-one>   
+
+        <join-column name="created_by" referenced-column-name="id" />
+    </many-to-one>
+    <many-to-one
+        field="state"
+        target-entity="Status"
+        inversed-by="article"
+        join-column="status">
+
+        <join-column name="status" referenced-column-name="id" />
+    </many-to-one>
+    <many-to-one
+        field="aufgestellt"
+        target-entity="Aufstellung"
+        inversed-by="article"
+        join-column="tw, lav, liv, iv, riv, rav, lm, zlm, zrm, zom, zdm, rm, ls, ms, rs, sub1, sub2, sub3, sub4, sub5, sub6, sub7, ch1, ch2, ch3, ch4, ch5, ch6, coach" >
+        <cascade>
+            <cascade-all/>
+        </cascade>
+        <join-column name="aufstellungId" referenced-column-name="id" />
+    </many-to-one>
+    <many-to-one
+        field="group"
+        target-entity="UserGroups"
+        inversed-by="article"
+        join-column="groupName">
+
+        <join-column name="access" referenced-column-name="id" />
+    </many-to-one>
 
   </entity>
 </doctrine-mapping>

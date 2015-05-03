@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id='fullcontent' ng-controller='PaginationCtrl'>
+        <h1>Passwort erstellen</h1>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            {{ form_end(form) }}
+    </div>
+    <div id='right_sector'>
+        <div class='rechtespalte'><h1>Nicht angemeldet</h1>
+            <table>
+                <tr>
+                    <td><a href='login'>Jetzt Einloggen</></td>
+                </tr> 
+            </table>
+        </div>    
+    </div>
+{% endblock %}  

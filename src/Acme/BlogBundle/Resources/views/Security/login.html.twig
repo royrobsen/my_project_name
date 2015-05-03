@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="col-xs-12 col-md-8">
+            <div class="box-blue">
+                <h1>Login</h1>
+                {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData) }}</div>
+                {% endif %}
+                <div class="form-group">
+                    <form action="{{ path('acme_blog_logincheck') }}" method="post">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" />
+
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name="_password" />
+
+
+                        <input type="hidden" name="_target_path" value="/" />
+                        <br />
+
+                        <button class="btn btn-default" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>       
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <div class="box-blue">
+                Um interne Bereiche der Homepage zu sehen musst du eingeloggt sein. Solltest du noch keine Zugangsdaten haben, wende dich bitte an den Administrator.
+                <hr />
+                <a href="passwort-vergessen">Du hast dein Passwort vergessen? </a>              
+            </div>       
+        </div>
+    </div>
+{% endblock %}  

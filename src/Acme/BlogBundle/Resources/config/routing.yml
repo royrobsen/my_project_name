@@ -18,6 +18,22 @@ acme_blog_news:
     path:   /news
     defaults: { _controller: AcmeBlogBundle:Default:news }
 
+acme_blog_impressum:
+    path:   /impressum
+    defaults: { _controller: AcmeBlogBundle:Default:impressum }
+    
+acme_blog_jsonallarticles:
+    path:   /jsonallarticles
+    defaults: { _controller: AcmeBlogBundle:Default:jsonallarticles }
+
+acme_blog_kontakt:
+    path:   /kontakt
+    defaults: { _controller: AcmeBlogBundle:Default:kontakt }
+    
+acme_blog_mannschaft:
+    path:   /mannschaft
+    defaults: { _controller: AcmeBlogBundle:Default:mannschaft }
+   
 ##
 ## Admin routes
 ##   
@@ -25,3 +41,14 @@ acme_blog_news:
 acme_blog_admin:
     path:   /admin
     defaults: { _controller: AcmeAdminBundle:Admin:admin }
+    
+acme_blog_login:
+    path:   /login
+    defaults: { _controller: AcmeBlogBundle:Security:login }
+    
+acme_blog_logincheck:
+    path:   /admin/login_check
+    defaults: { _controller: AcmeBlogBundle:Security:login_check }
+    
+logout:
+    path: /admin/logout

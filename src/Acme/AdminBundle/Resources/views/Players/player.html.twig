@@ -1,0 +1,59 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+    <h1>Spieler</h1>
+	<button class='btn-primar'>Erstellen</button>
+	<div style="float: right; margin: 0 auto; width: 70px;"></div>
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="message">
+                {{ flashMessage }}
+            </div>
+        {% endfor %} 
+            <div class='bigbox' ng-app="textAngularTest"  ng-controller="myCtrl">
+		<div class='sidebar'>
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}	  
+			<div class='edit-box'>
+                            <h4>Spielerdaten</h4>
+                            {{ form_label(form.username) }}<br />
+                            {{ form_widget(form.username) }} <br /><br />
+                            
+                            {{ form_label(form.firstName) }}<br />
+                            {{ form_widget(form.firstName) }}  <br /><br />
+                            
+                            {{ form_label(form.name) }}<br />
+                            {{ form_widget(form.name) }}  <br /><br />
+                            
+                            {{ form_label(form.group) }}<br />
+                            {{ form_widget(form.group) }}  <br /><br />
+                            
+                            {{ form_label(form.position) }}<br />
+                            {{ form_widget(form.position) }}  <br /><br />
+                            
+                            {{ form_label(form.email) }}<br />
+                            {{ form_widget(form.email) }}  <br /><br />
+                            
+                            {{ form_widget(form.active) }} {{ form_label(form.active) }}<br /><br />
+                            
+                            {{ form_widget(form.blocked) }} {{ form_label(form.blocked) }}<br /><br />
+                        </div>  
+                </div>
+                <div class='sidebar'>
+			<div class='edit-box'>
+			<h4>
+				Spielerbild
+			</h4>
+                            <img src="/bundles/acmeblog/images/players/{{ player.fotoid }}.jpg" style="width: 250px;"/>
+                            <br /><br />
+                            {{ form_widget(form.attachment) }}
+                        </div>   
+                        <div class='action-box'>
+                            {{form_widget(form.save, { 'attr': {'class':'btn-primar', 'style':'float: left; background: #2ea2cc; color: #FAFAFA; font-weight: 300; min-height: 23px;'}} ) }}        
+                            <a href="/passwort-reset/{{ player.id }}">Passwort zurücksetzen</a>
+                         <div style="clear:both;">
+                            </div>
+                        </div>
+                </div>
+                </div>
+                    {{ form_end(form) }}
+            </div>
+{% endblock %}  

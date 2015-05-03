@@ -1,55 +1,122 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-                    <div id="leftsection">
-                        <div id='newsblock' ng-controller='PaginationCtrl'>
-                            <h1>Aktuelle Neuigkeiten</h1>
-                                    <div ng-repeat="item in items | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
-                                        <h3><a href="article/[[ item.alias ]]"> [[item.headline]]</a></h3>
-                                        [[item.articleContent | limitTo : 300 : 0 | htmlToPlaintext ]]...
-                                    </div>                        
-                                    <div id="prev-page" class="nav-btn" ng-class="prevPageDisabled()">
-                                        <button id="prev-btn" ng-click="prevPage()">Vorherige Seite</button>
-                                    </div>
-                                    <div id="next-page" class="nav-btn" ng-class="nextPageDisabled()">
-                                        <button id="next-btn" ng-click="nextPage()">Nächste Seite</button>
-                                    </div>
+       <div class="container">
+            <div class="row last-match" >
+                <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-12">
+                            <img src="{{ asset('bundles/acmeblog/images/vfllohbruegge.gif') }}" class="img-responsive center-block" />
+                        </div>
+                        <div class="col-xs-12 col-md-12 team">
+                           VfL 3.
                         </div>
                     </div>
-                    <div id='rightsection'>
-                        <div class="rechtekolumne">
-                            <h1>Login</h1>
-                                <form action='logincheck.php' method='post'>
-                                    <table>
-                                        <tr>
-                                            <td>Benutzername</td>
-                                            <td>Passwort</td>
-                                        </tr> 
-                                        <tr>
-                                            <td><input name='username' required='required'/></td>
-                                            <td><input name='password' type='password' required='required'/></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='submit' value='Login'/></td>
-                                        </tr>  
-                                    </table>
-                                </form>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-12">
+                            <h2 class="score"> 3 <b>:</b> 0</h2>
                         </div>
-                        <div class="rechtekolumne">
-                            <h1>N&auml;chste Termine</h1>
-                                <table id='termintabelle' cellpadding="10px">
-                                    {% for event in events %}
-                                    <tr>
-                                        <td colspan='2' class='erstezelle'>
-                                            <a href='termine/ {{ event.alias }} '> {{ event.title }} </a>
-                                        </td>
-                                        <td class='zweitezelle'>
-                                            Wann: {{ event.next|date('d.m.y') }} um {{ event.next|date('H:i') }} Uhr <br />
-                                            Wo: {{ event.address }}, {{ event.zipcode }} {{ event.city }} 
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </table>
+                            <div class="col-xs-12 col-md-12 team">
+                                <a href="">Zum Spielbericht</a>
+                            </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="col-xs-12 col-md-12">
+                            <img src="{{ asset('bundles/acmeblog/images/fcbergedorf85.png') }}" class="img-responsive center-block"/>
+                        </div>
+                        <div class="col-xs-12 col-md-12 team">
+                            FC Bergedorf 85
                         </div>
                     </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 col-md-2"></div>
+                    <div class="col-xs-12 col-md-10">                        
+                        <table class="table">
+                            <tr>
+                                <th style="background: #0061aa; color: #fff;">Nächste Spiele</th>
+                            </tr>
+                            {% for event in events %}
+                            <tr>
+                                <td class="team1">{{ event.heim }}</td><td class="date">{{ event.next|date('d M y') }}</td><td class="team2">{{ event.gast }}</td><td><a href="" class="fa fa-send"></a></td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- Carousel
+    ================================================== -->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img class="first-slide" src="{{ asset('bundles/acmeblog/images/hpslide.jpg') }}" alt="First slide">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h2>Deutschland</h2>
+                                <p>gegen</p>
+                                <h2>England</h2>
+                            </div>
+                        </div>
+                </div>
+                <div class="item">
+                    <img class="second-slide" src="{{ asset('bundles/acmeblog/images/hpslide2.jpg') }}" alt="Second slide">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h2>Kreisklasse</h2>
+                                <p>auf neuem Niveau</p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div><!-- /.carousel -->
+    <div class="container">
+            <div class="col-xs-12 col-md-6">
+                <div class="tab">Ankündigung</div>
+                <div class="box-blue">
+                    <p>Am 27.05.15 findet eine Mannschaftsbesprechung statt um 19:30 Uhr.  Am 27.05.15 findet eine Mannschaftsbesprechung statt um 19:30 Uhr.Am 27.05.15 findet eine Mannschaftsbesprechung statt um 19:30 Uhr.Am 27.05.15 findet eine Mannschaftsbesprechung statt um 19:30 Uhr.Am 27.05.15 findet eine Mannschaftsbesprechung statt um 19:30 Uhr.Am 27.05.15 findet eine Mannschaftsbesprechung statt um 19:30 Uhr.   </p>
+                </div>
+                <div class="tab">Training</div>
+                <div class="box-blue">
+                    Die 3. Herren trainiert zwei Tage in der Woche. Montags um <b>19:15 Uhr</b> am <b>Sportplatz Sander Tannen</b> (FC Bergedorf 85) und Mittwochs um <b>19:15 Uhr</b> am <b>Sportplatz Binnenfeldredder</b>.
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-6 clearfix">
+                <div class="col-md-12">
+                <div class="tab">News</div>
+                    <div class="box-blue">
+                        {% for article in articles %}
+                        <div class="news-text">
+                            <a href="article/{{ article.alias }}"><h4>{{ article.headline }}</h4></a>
+                               {{ article.articleContent|length > 150 ? article.articleContent|striptags|slice(0, 150) ~ '...' : article.articleContent }}
+                            <span class="date-news">{{ article.createdDate |date('d M') }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="tab">Tabelle</div>
+                        <div class="box-blue">
+                            <table class="table tabelle">
+                                <tr class="t-h">
+                                    <th class="t-d">Pos</th>
+                                    <th>Team</th>
+                                    <th>Sp.</th>
+                                    <th>G</th>
+                                    <th>U</th>
+                                    <th>N</th>
+                                    <th>TV</th>
+                                    <th>Td</th>
+                                    <th>Pkt</th>
+                                </tr>
+                                {{ table|raw }}
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}               

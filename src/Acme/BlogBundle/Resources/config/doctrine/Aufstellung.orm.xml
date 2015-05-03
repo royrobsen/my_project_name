@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\BlogBundle\Entity\Aufstellung" table="aufstellung">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="tw" type="string" column="tw" length="50" nullable="true"/>
+    <field name="lav" type="string" column="lav" length="50" nullable="true"/>
+    <field name="liv" type="string" column="liv" length="50" nullable="true"/>
+    <field name="iv" type="string" column="iv" length="50" nullable="true"/>
+    <field name="riv" type="string" column="riv" length="50" nullable="true"/>
+    <field name="rav" type="string" column="rav" length="50" nullable="true"/>
+    <field name="lm" type="string" column="lm" length="50" nullable="true"/>
+    <field name="zlm" type="string" column="zlm" length="50" nullable="true"/>
+    <field name="zrm" type="string" column="zrm" length="50" nullable="true"/>
+    <field name="zom" type="string" column="zom" length="50" nullable="true"/>
+    <field name="zdm" type="string" column="zdm" length="50" nullable="true"/>
+    <field name="rm" type="string" column="rm" length="50" nullable="true"/>
+    <field name="ls" type="string" column="ls" length="50" nullable="true"/>
+    <field name="ms" type="string" column="ms" length="50" nullable="true"/>
+    <field name="rs" type="string" column="rs" length="50" nullable="true"/>
+    <field name="sub1" type="string" column="sub1" length="50" nullable="true"/>
+    <field name="sub2" type="string" column="sub2" length="50" nullable="true"/>
+    <field name="sub3" type="string" column="sub3" length="50" nullable="true"/>
+    <field name="sub4" type="string" column="sub4" length="50" nullable="true"/>
+    <field name="sub5" type="string" column="sub5" length="50" nullable="true"/>
+    <field name="sub6" type="string" column="sub6" length="50" nullable="true"/>
+    <field name="sub7" type="string" column="sub7" length="50" nullable="true"/>
+    <field name="ch1" type="string" column="ch1" length="50" nullable="true"/>
+    <field name="ch2" type="string" column="ch2" length="50" nullable="true"/>
+    <field name="ch3" type="string" column="ch3" length="50" nullable="true"/>
+    <field name="ch4" type="string" column="ch4" length="50" nullable="true"/>
+    <field name="ch5" type="string" column="ch5" length="50" nullable="true"/>
+    <field name="ch6" type="string" column="ch6" length="50" nullable="true"/>
+    <field name="coach" type="string" column="coach" length="50" nullable="true"/>
+    <one-to-many
+        field="article"
+        target-entity="Articles"
+        mapped-by="aufgestellt" />
+  </entity>
+</doctrine-mapping>

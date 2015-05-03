@@ -100,6 +100,16 @@ class Events
     private $intervall;
 
     /**
+     * @var string
+     */
+    private $heim;
+    
+    /**
+     * @var string
+     */
+    private $gast;
+    
+    /**
      * @var integer
      */
     private $id;
@@ -510,6 +520,52 @@ class Events
     }
 
     /**
+     * Set heim
+     *
+     * @param string $heim
+     * @return Events
+     */
+    public function setHeim($heim)
+    {
+        $this->heim = $heim;
+
+        return $this;
+    }
+
+    /**
+     * Get heim
+     *
+     * @return string 
+     */
+    public function getHeim()
+    {
+        return $this->heim;
+    }
+    
+    /**
+     * Set gast
+     *
+     * @param string $gast
+     * @return Events
+     */
+    public function setGast($gast)
+    {
+        $this->gast = $gast;
+
+        return $this;
+    }
+
+    /**
+     * Get gast
+     *
+     * @return string 
+     */
+    public function getGast()
+    {
+        return $this->gast;
+    }
+    
+    /**
      * Get intervall
      *
      * @return integer 
@@ -527,5 +583,61 @@ class Events
     public function getId()
     {
         return $this->id;
+    }
+    /**
+     * @var \Acme\BlogBundle\Entity\EventCategory
+     */
+    private $eventcategory;
+
+
+    /**
+     * Set eventcategory
+     *
+     * @param \Acme\BlogBundle\Entity\EventCategory $eventcategory
+     * @return Events
+     */
+    public function setEventcategory(\Acme\BlogBundle\Entity\EventCategory $eventcategory = null)
+    {
+        $this->eventcategory = $eventcategory;
+
+        return $this;
+    }
+
+    /**
+     * Get eventcategory
+     *
+     * @return \Acme\BlogBundle\Entity\EventCategory 
+     */
+    public function getEventcategory()
+    {
+        return $this->eventcategory;
+    }
+    /**
+     * @var \Acme\BlogBundle\Entity\UserGroups
+     */
+    private $group;
+
+
+    /**
+     * Set group
+     *
+     * @param \Acme\BlogBundle\Entity\UserGroups $group
+     * @return Events
+     */
+    public function setGroup(\Acme\BlogBundle\Entity\UserGroups $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \Acme\BlogBundle\Entity\UserGroups 
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 }

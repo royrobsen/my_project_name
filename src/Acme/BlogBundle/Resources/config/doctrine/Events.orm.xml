@@ -13,17 +13,35 @@
     <field name="createdDate" type="datetime" column="created_date" nullable="false"/>
     <field name="createdBy" type="integer" column="created_by" nullable="false"/>
     <field name="modifiedDate" type="datetime" column="modified_date" nullable="false"/>
-    <field name="modifiedBy" type="integer" column="modified_by" nullable="false"/>
+    <field name="modifiedBy" type="integer" column="modified_by" nullable="true"/>
     <field name="eventcatId" type="integer" column="eventcat_id" nullable="false"/>
     <field name="startdate" type="datetime" column="startdate" nullable="false"/>
     <field name="enddate" type="datetime" column="enddate" nullable="false"/>
-    <field name="period" type="text" column="period" nullable="false"/>
+    <field name="period" type="text" column="period" nullable="true"/>
     <field name="next" type="datetime" column="next" nullable="false"/>
-    <field name="place" type="string" column="place" length="80" nullable="false"/>
+    <field name="place" type="string" column="place" length="80" nullable="true"/>
     <field name="city" type="string" column="city" length="50" nullable="false"/>
     <field name="address" type="string" column="address" length="150" nullable="false"/>
+    <field name="heim" type="string" column="heim" length="150" nullable="true"/>
+    <field name="gast" type="string" column="gast" length="150" nullable="true"/>
     <field name="zipcode" type="string" column="zipcode" length="5" nullable="false"/>
     <field name="description" type="text" column="description" length="16777215" nullable="false"/>
     <field name="intervall" type="integer" column="intervall" nullable="false"/>
+    <many-to-one
+        field="eventcategory"
+        target-entity="EventCategory"
+        inversed-by="event"
+        join-column="title">
+
+        <join-column name="eventcat_id" referenced-column-name="id" />
+    </many-to-one>
+    <many-to-one
+        field="group"
+        target-entity="UserGroups"
+        inversed-by="event"
+        join-column="groupName">
+
+        <join-column name="access" referenced-column-name="id" />
+    </many-to-one>
   </entity>
 </doctrine-mapping>

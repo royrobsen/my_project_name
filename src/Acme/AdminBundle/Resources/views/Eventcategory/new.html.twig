@@ -1,0 +1,25 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <h1>Termin-Kategorie bearbeiten</h1>
+	<div style="float: right; margin: 0 auto; width: 70px;"></div>
+            <div class='bigbox' ng-app="textAngularTest"  ng-controller="myCtrl">
+		<div class='box'>
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}	
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="message">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    <h4>{{ form_label(form.title) }}</h4>
+                        {{ form_widget(form.title) }} 
+                    <h4>{{ form_label(form.state) }}</h4>
+                        {{ form_widget(form.state) }} 
+                        <br /><br />
+                        {{ form_widget(form.save) }}
+                        
+                </div>
+                    {{ form_end(form) }}
+            </div>
+{% endblock %}  

@@ -1,0 +1,262 @@
+body {
+  color: #ffffff;
+  min-height: 1000px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 13px;
+  	margin-top: 50px;
+	margin-bottom: 50px;
+	background: #f1f1f1;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  background: #fff;
+}
+
+.navbar {
+    margin-bottom: 0;
+    color: #fff;
+    background: #fff;
+    border: 0;
+}
+
+.navbar-inverse .navbar-toggle:focus,.navbar-inverse .navbar-toggle:hover {
+    background: #0d2840;
+    border: 0;
+}
+
+.navbar-inverse .navbar-toggle {
+     border: 0;   
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff;
+}
+
+.dropdown-header {
+    color: #FAFAFA;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper > .container {
+  padding-right: 0;
+  padding-left: 0;
+}
+.navbar-wrapper .navbar {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.navbar-wrapper .navbar .container {
+  width: auto;
+}
+
+.navbar-inverse .navbar-nav > li > a, .navbar-brand {
+    color: #fff !important;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+    background: #080808;
+}
+
+.dropdown-menu {
+    background: #0d2840;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 40px;
+}
+/* Since positioning the image, we need to help out the caption */
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+  margin-bottom: 17em;
+  border-radius: 10px;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    background: #fff;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+.navbar-static-top {
+    border-width: 0;
+    z-index: 1000;
+}
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+
+  .teamimg {
+      margin-top: -45px
+  }
+  
+}
+
+.tab {
+    height: 50px;
+    background: #0061aa;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 50px;
+    padding: 0 20px;
+    position: relative;
+    text-transform: uppercase;
+    z-index: 1;
+    margin-left: -15px;
+    border-top-right-radius: 20px;
+}
+
+.head-box {
+background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(41,94,219,1) 50%,rgba(31,83,196,1) 100%,rgba(21,44,196,1) 100%); /* W3C */
+}
+.score {
+    text-align: center;
+    color: #fff;
+    display: inline-block;
+    font-size: 63px;
+    margin: 0;
+    vertical-align: bottom;
+}
+
+.score b {   
+    color: #4D85AA;
+    display: inline;
+    font-style: normal !important;
+}
+
+.team {
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 0 40px 0;
+}
+
+.news-preview {
+    background: white;
+    color: #0f314d;
+    padding-bottom: 41.9px;
+    border: 4px solid #0061aa;
+}
+
+.news-text {
+    border-left: 1px solid #e8ebee;
+    padding: 30px 0 5px 40px;
+    position: relative;
+    left: 30px;
+}
+
+.date-news {
+    background: none repeat scroll 0 0 #fff;
+    color: #8d9daa;
+    left: -30px;
+    padding: 10px;
+    position: absolute;
+    top: 30px;
+}
+
+.table-games {
+    background: #fff;
+    color: #0f314d;
+}
+
+.table-games td.team1{
+    text-align: right;
+}
+
+.table-games td.date{
+    text-align: center;
+}
+
+.table-games td.team2{
+    text-align: left;
+}
+
+.teamimg {
+    padding: 10px;
+}
+
+.tabelle-box {
+    background-color: #0d2840;  
+    padding: 0;
+}
+
+.tabelle tr:nth-child(2n) {
+    background: #081d2f;
+}
+
+.tabelle tr, .tabelle td {
+     border-top: 0 !important;
+}
+
+.t-h {
+    color: #4c6d8e;
+    line-height: 36px !important;
+}
+
+.t-d {
+    color: #4c6d8e;
+    text-align: center;
+}
+
+.little-title {
+    line-height: 63px;
+    margin: 0;
+    padding-left: 20px;
+    text-transform: uppercase;
+    font-size: large;
+    font-weight: 600;
+}

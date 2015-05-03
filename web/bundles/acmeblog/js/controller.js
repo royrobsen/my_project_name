@@ -1,7 +1,7 @@
 var app = angular.module("MyApp", []) .config(['$interpolateProvider', function ($interpolateProvider) {
-    $interpolateProvider.startSymbol('[[');
-    $interpolateProvider.endSymbol(']]');
-  }]);
+$interpolateProvider.startSymbol('[[');
+$interpolateProvider.endSymbol(']]');
+}]);
 
 app.filter('offset', function() {
 return function(input, start) {
@@ -12,7 +12,7 @@ return input.slice(start);
 
 app.filter('htmlToPlaintext', function() {
 return function(text) {
-      return String(text).replace(/<[^>]+>/gm, '');
+return String(text).replace(/<[^>]+>/gm, '');
 };
 });
 
@@ -21,11 +21,13 @@ $scope.itemsPerPage = 8;
 $scope.currentPage = 0;
 
 function htmlToPlaintext(text) {
-  return String(text).replace(/<[^>]+>/gm, '');
+return String(text).replace(/<[^>]+>/gm, '');
 }
 
+$scope.items = [];
+
 $http.get('articles').success(function(data) {
-    $scope.items = data;
+$scope.items = data;
 });
 
 $scope.range = function() {

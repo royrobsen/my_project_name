@@ -3,6 +3,7 @@
 namespace Acme\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Articles
@@ -83,7 +84,6 @@ class Articles
      * @var integer
      */
     private $id;
-
 
     /**
      * Set headline
@@ -316,98 +316,6 @@ class Articles
     }
 
     /**
-     * Set aufstellung
-     *
-     * @param string $aufstellung
-     * @return Articles
-     */
-    public function setAufstellung($aufstellung)
-    {
-        $this->aufstellung = $aufstellung;
-
-        return $this;
-    }
-
-    /**
-     * Get aufstellung
-     *
-     * @return string 
-     */
-    public function getAufstellung()
-    {
-        return $this->aufstellung;
-    }
-
-    /**
-     * Set auswechselspieler
-     *
-     * @param string $auswechselspieler
-     * @return Articles
-     */
-    public function setAuswechselspieler($auswechselspieler)
-    {
-        $this->auswechselspieler = $auswechselspieler;
-
-        return $this;
-    }
-
-    /**
-     * Get auswechselspieler
-     *
-     * @return string 
-     */
-    public function getAuswechselspieler()
-    {
-        return $this->auswechselspieler;
-    }
-
-    /**
-     * Set wechsel
-     *
-     * @param string $wechsel
-     * @return Articles
-     */
-    public function setWechsel($wechsel)
-    {
-        $this->wechsel = $wechsel;
-
-        return $this;
-    }
-
-    /**
-     * Get wechsel
-     *
-     * @return string 
-     */
-    public function getWechsel()
-    {
-        return $this->wechsel;
-    }
-
-    /**
-     * Set papierkorb
-     *
-     * @param boolean $papierkorb
-     * @return Articles
-     */
-    public function setPapierkorb($papierkorb)
-    {
-        $this->papierkorb = $papierkorb;
-
-        return $this;
-    }
-
-    /**
-     * Get papierkorb
-     *
-     * @return boolean 
-     */
-    public function getPapierkorb()
-    {
-        return $this->papierkorb;
-    }
-
-    /**
      * Get id
      *
      * @return integer 
@@ -451,13 +359,13 @@ class Articles
 
 
     /**
-     * Set author
+     * Set users
      *
      * @param \Acme\BlogBundle\Entity\Users $author
      * @return Articles
      */
-    public function setAuthor(\Acme\BlogBundle\Entity\Users $author = null)
-    {
+ public function setAuthor(\Acme\BlogBundle\Entity\Users $author = null)    {
+     
         $this->author = $author;
 
         return $this;
@@ -468,8 +376,125 @@ class Articles
      *
      * @return \Acme\BlogBundle\Entity\Users 
      */
-    public function getAuthor()
+     public function getAuthor()
     {
         return $this->author;
+    }
+    
+    /**
+     * @var \Acme\BlogBundle\Entity\Status
+     */
+    private $state;
+
+
+    /**
+     * Set state
+     *
+     * @param \Acme\BlogBundle\Entity\Status $state
+     * @return Articles
+     */
+    public function setState(\Acme\BlogBundle\Entity\Status $state = null)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return \Acme\BlogBundle\Entity\Status 
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+   
+    /**
+     * @var integer
+     */
+    private $aufstellungId;
+
+
+    /**
+     * Set aufstellungId
+     *
+     * @param integer $aufstellungId
+     * @return Articles
+     */
+    public function setAufstellungId($aufstellungId)
+    {
+        $this->aufstellungId = $aufstellungId;
+
+        return $this;
+    }
+
+    /**
+     * Get aufstellungId
+     *
+     * @return integer 
+     */
+    public function getAufstellungId()
+    {
+        return $this->aufstellungId;
+    }
+    /**
+     * @var \Acme\BlogBundle\Entity\Aufstellung
+     * @Assert\Type(type="\Acme\BlogBundle\Entity\Aufstellung")
+     * @Assert\Valid()
+     */
+    private $aufgestellt;
+    
+    /**
+     * Set aufgestellt
+     *
+     * @param \Acme\BlogBundle\Entity\Aufstellung $aufgestellt
+     * @return Articles
+     */
+    public function setAufgestellt(\Acme\BlogBundle\Entity\Aufstellung $aufgestellt = null)
+    {
+        $this->aufgestellt = $aufgestellt;
+
+        return $this;
+    }
+
+    /**
+     * Get aufgestellt
+     *
+     * @return \Acme\BlogBundle\Entity\Aufstellung 
+     */
+    public function getAufgestellt()
+    {
+        return $this->aufgestellt;
+    }
+   
+    
+    /**
+     * @var \Acme\BlogBundle\Entity\UserGroups
+     */
+    private $group;
+
+
+    /**
+     * Set group
+     *
+     * @param \Acme\BlogBundle\Entity\UserGroups $group
+     * @return Articles
+     */
+    public function setGroup(\Acme\BlogBundle\Entity\UserGroups $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \Acme\BlogBundle\Entity\UserGroups 
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 }

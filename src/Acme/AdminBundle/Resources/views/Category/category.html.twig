@@ -1,0 +1,27 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <h1>Kategorie bearbeiten</h1>
+	<button class='btn-primar'>Erstellen</button>
+	<div style="float: right; margin: 0 auto; width: 70px;"></div>
+            <div class='bigbox' ng-app="textAngularTest"  ng-controller="myCtrl">
+		<div class='box'>
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}	
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="message">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    <h4>{{ form_label(form.catName) }}</h4>
+                        {{ form_widget(form.catName) }} 
+                    <h4>{{ form_label(form.description) }}</h4>
+                        {{ form_widget(form.description) }}
+                    <h4>{{ form_label(form.group) }}</h4>
+                        {{ form_widget(form.group) }}<br /><br />
+                        {{ form_widget(form.save) }}
+                        
+                </div>
+                    {{ form_end(form) }}
+            </div>
+{% endblock %}  

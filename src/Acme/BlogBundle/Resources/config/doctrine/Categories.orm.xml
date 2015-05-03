@@ -13,6 +13,14 @@
     <one-to-many
         field="article"
         target-entity="Articles"
-        mapped-by="categories" />
+        mapped-by="category" />
+    <many-to-one
+        field="group"
+        target-entity="UserGroups"
+        inversed-by="category"
+        join-column="groupName">
+
+        <join-column name="access" referenced-column-name="id" />
+    </many-to-one>
   </entity>
 </doctrine-mapping>

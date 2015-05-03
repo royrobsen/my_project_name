@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="col-xs-12 col-md-8">
+            <div class="box-blue">
+        <h1>Kontakt</h1>
+        <hr />
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="message">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_label(form.mail) }}
+                {{ form_widget(form.mail, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_label(form.subject) }}
+                {{ form_widget(form.subject, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_label(form.message) }}
+                {{ form_widget(form.message, { 'attr': {'class': 'form-control', 'rows' : '10' } }) }}
+                {{ form_label(form.security) }}
+                {{ form_widget(form.security, { 'attr': {'class': 'form-control'} }) }}
+                Wie viel ist 3 x 5? <br /><br />
+                {{ form_label(form.send) }}
+                {{ form_widget(form.send, { 'attr': {'class': 'btn btn-default'} }) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-md-12">
+                <div class="tab">Info</div>
+                <div class="box-blue">
+                </div>  
+            </div>
+
+        </div>
+    </div>
+{% endblock %}  

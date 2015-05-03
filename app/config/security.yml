@@ -3,7 +3,8 @@
 security:
     # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        Acme\BlogBundle\Entity\Users:
+            algorithm: bcrypt
 
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
@@ -17,7 +18,11 @@ security:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-
+        
+        db_provider:
+            entity:
+                class: AcmeBlogBundle:Users
+                property: email
     # the main part of the security, where you can set up firewalls
     # for specific sections of your app
     firewalls:
@@ -44,7 +49,18 @@ security:
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
-
+        secured_area:
+            pattern: /admin.*
+            form_login:
+                login_path: /login
+                check_path: /admin/login_check
+            logout: 
+                path: /admin/logout
+                target: /
+            #http_basic: ~
+            provider: db_provider
+            
+            
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/cookbook/security/access_control.html

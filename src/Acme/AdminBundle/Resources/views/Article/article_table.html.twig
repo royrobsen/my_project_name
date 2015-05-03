@@ -1,0 +1,24 @@
+
+    <h1>Beiträge</h1>
+	<button class='btn-primary'>Erstellen</button>
+	<div style="float: right; margin: 0 auto; width: 70px;">
+        </div>
+        <div ng-controller='PaginationCtrl'>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Titel</th>
+                    <th>Autor</th>
+                    <th>Kategorie</th>
+                    <th>Datum</th>
+                    <th>Status</th>
+                </tr>
+                {% for article in articles %}
+                <tr>
+                    <td><input type="checkbox" value="{{article.id}}"></td>
+                    <td><b><a href="article/{{article.id}}">{{article.headline}}</a></b><div class="actions_div"><a href="article/{{article.id}}">Bearbeiten</a>  |  <a style="color: red;" href="delete/{{article.id}}">Papierkorb</a>  |  <a href="/article/{{article.alias}}">Anschauen</a></div></td>
+                    <td>{{article.0.author.firstName}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
