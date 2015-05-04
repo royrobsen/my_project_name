@@ -99,8 +99,7 @@ class ArticleController extends Controller
         }
         
             $form = $this->createForm(new ArticlesType(), $article);    
-                    
-               dump($article);
+                   
                 $form->handleRequest($request);
                 
                 if ($form->isValid()) {
