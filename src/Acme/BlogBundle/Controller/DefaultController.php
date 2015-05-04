@@ -95,7 +95,7 @@ class DefaultController extends Controller
 
         $i++;
     }
-        dump($table);
+
         return $this->render('AcmeBlogBundle:Default:index.html.twig', array('events' => $events, 'articles' => $articles, 'table' => $table));
     }
     
