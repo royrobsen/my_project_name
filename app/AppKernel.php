@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new AppBundle\AppBundle(),
+            new Acme\DemoBundle\AcmeDemoBundle(),
             new Acme\TestBundle\AcmeTestBundle(),
             new Acme\BlogBundle\AcmeBlogBundle(),
             new Acme\AdminBundle\AcmeAdminBundle(),
