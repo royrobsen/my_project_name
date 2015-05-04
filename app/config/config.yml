@@ -84,11 +84,7 @@ swiftmailer:
 sensio_framework_extra:
     view:
         annotations: false
-    
-fos_rest:
-    routing_loader:
-        default_format: json
-        
+            
 services:
     serializer.method:
         class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
