@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block javascripts %}
+<script src=" {{ asset('bundles/acmeblog/js/newsController.js') }} "></script>
+{% endblock %}
 {% block body %}
     <div class="container" ng-controller='PaginationCtrl' ng-init="showData()">
         <div class="col-xs-12 col-md-8">
