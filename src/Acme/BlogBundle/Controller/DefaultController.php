@@ -86,9 +86,6 @@ class DefaultController extends Controller
     $table .= "<tr><td  class='aligncenter'>".$test2[0]."</td>
         <td class='alignleft'>".$test2[1]."</td>
         <td class='aligncenter'>".$test2[2]."</td>
-        <td class='aligncenter'>".$test2[3]."</td>
-        <td class='aligncenter'>".$test2[4]."</td>
-        <td class='aligncenter'>".$test2[5]."</td>
         <td class='aligncenter'>".$test2[7]."</td>
         <td class='aligncenter'>".$test2[8]."</td></tr>" ;
 
