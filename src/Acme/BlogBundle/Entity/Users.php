@@ -582,7 +582,7 @@ class Users implements UserInterface, \Serializable
     public function getRoles()
     {
         if($this->groupId == 1) {
-            return array('ROLE_SUPERADMIN');
+            return array('ROLE_SUPER_ADMIN');
         } 
         elseif($this->groupId == 2) {
             return array('ROLE_ADMIN');
