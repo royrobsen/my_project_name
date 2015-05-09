@@ -83,13 +83,12 @@ class DefaultController extends Controller
 
     $test2 = explode(" break ",strip_tags(str_replace("</td>"," break ",str_replace("</span></div>","</span>",$test[$i]))));
 
-    $table .= "<td  class='aligncenter'>".$test2[0]."</td>
+    $table .= "<tr><td  class='aligncenter'>".$test2[0]."</td>
         <td class='alignleft'>".$test2[1]."</td>
         <td class='aligncenter'>".$test2[2]."</td>
         <td class='aligncenter'>".$test2[3]."</td>
         <td class='aligncenter'>".$test2[4]."</td>
         <td class='aligncenter'>".$test2[5]."</td>
-        <td class='aligncenter'>".$test2[6]."</td>
         <td class='aligncenter'>".$test2[7]."</td>
         <td class='aligncenter'>".$test2[8]."</td></tr>" ;
 
@@ -141,12 +140,24 @@ class DefaultController extends Controller
     
      }
      
+    public function reportsAction() {
+         
+        return $this->render('AcmeBlogBundle:Default:reports.html.twig');
+    
+     }
+     
     public function impressumAction() {
          
         return $this->render('AcmeBlogBundle:Default:impressum.html.twig');
     
      }
      
+    public function trainingszeitenAction() {
+         
+        return $this->render('AcmeBlogBundle:Default:trainingszeiten.html.twig');
+    
+     }
+          
     public function mannschaftAction() {
         
         $users = $this->getDoctrine()
@@ -216,6 +227,27 @@ class DefaultController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery( "SELECT a, u, c, s FROM AcmeBlogBundle:Articles a JOIN a.author u JOIN a.category c JOIN a.state s WHERE a.status != 2 AND CONCAT(a.headline, CONCAT(' ', a.articleContent))  LIKE :search ORDER BY a.createdDate DESC");
+        $query->setParameter('search', '%' . $search . '%');
+        
+        $articles = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
+            
+        $response = new Response();
+        $response->setContent(json_encode($articles));
+        
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
+    
+    } 
+    
+    public function jsonallreportsAction(Request $request) {
+        
+        $request = $this->getRequest();
+        
+        $search = $request->query->get('search'); 
+        
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery( "SELECT a, u, c, s FROM AcmeBlogBundle:Articles a JOIN a.author u JOIN a.category c JOIN a.state s WHERE a.status != 2 AND a.catId = 1 AND CONCAT(a.headline, CONCAT(' ', a.articleContent)) LIKE :search ORDER BY a.createdDate DESC");
         $query->setParameter('search', '%' . $search . '%');
         
         $articles = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;

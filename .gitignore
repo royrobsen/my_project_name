@@ -3,6 +3,7 @@
 /app/logs
 /app/cache
 /app/config/parameters.ini
+/app/config/parameters.yml
 /nbproject/private
 *.DS_Store
 *.swp

@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block javascripts %}
-<script src=" {{ asset('bundles/acmeblog/js/newsController.js') }} "></script>
+<script src=" {{ asset('bundles/acmeblog/js/reportsController.js') }} "></script>
 {% endblock %}
 {% block body %}
     <div class="container" ng-controller='PaginationCtrl' ng-init="showData()">
         <div class="col-xs-12 col-md-8">
             <div class="box-blue">
-            <h1>Neueste Beiträge</h1>
+            <h1>Spielberichte</h1>
                 <div ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize | filter:search" ng-class-odd="odd" ng-class-even="even">
                     <h3><a href="/article/[[datalist.alias]]">[[datalist.headline]]</a></h3>
                     [[datalist.articleContent | limitTo : 300 : 0 | htmlToPlaintext ]]...
@@ -37,4 +37,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock %}  

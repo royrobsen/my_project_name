@@ -581,7 +581,21 @@ class Users implements UserInterface, \Serializable
     
     public function getRoles()
     {
-        return array('ROLE_USER');
+        if($this->groupId == 1) {
+            return array('ROLE_SUPERADMIN');
+        } 
+        elseif($this->groupId == 2) {
+            return array('ROLE_ADMIN');
+        }
+        elseif($this->groupId == 3) {
+            return array('ROLE_USER');
+        }
+        elseif($this->groupId == 4) {
+            return array('ROLE_GUEST');
+        }
+        elseif($this->groupId == 5) {
+            return array('ROLE_SPECIAL');
+        }
     }
 
     public function eraseCredentials()

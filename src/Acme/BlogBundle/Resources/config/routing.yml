@@ -1,7 +1,7 @@
 acme_blog_homepage:
     path:     /
     defaults: { _controller: AcmeBlogBundle:Default:index }
-    
+
 acme_blog_user:
     path:     /show/{id}
     defaults: { _controller: AcmeBlogBundle:Default:show }
@@ -9,11 +9,11 @@ acme_blog_user:
 acme_blog_article:
     path:   /article/{alias}
     defaults: { _controller: AcmeBlogBundle:Default:article }
-    
+
 acme_blog_articles:
     path:   /articles
     defaults: { _controller: AcmeBlogBundle:Default:articles }
-    
+
 acme_blog_news:
     path:   /news
     defaults: { _controller: AcmeBlogBundle:Default:news }
@@ -21,7 +21,7 @@ acme_blog_news:
 acme_blog_impressum:
     path:   /impressum
     defaults: { _controller: AcmeBlogBundle:Default:impressum }
-    
+
 acme_blog_jsonallarticles:
     path:   /jsonallarticles
     defaults: { _controller: AcmeBlogBundle:Default:jsonallarticles }
@@ -29,26 +29,38 @@ acme_blog_jsonallarticles:
 acme_blog_kontakt:
     path:   /kontakt
     defaults: { _controller: AcmeBlogBundle:Default:kontakt }
-    
+
 acme_blog_mannschaft:
     path:   /mannschaft
     defaults: { _controller: AcmeBlogBundle:Default:mannschaft }
-   
+
+acme_blog_reports:
+    path:   /spielberichte
+    defaults: { _controller: AcmeBlogBundle:Default:reports }
+
+acme_blog_jsonallreports:
+    path:   /jsonallreports
+    defaults: { _controller: AcmeBlogBundle:Default:jsonallreports }
+
+acme_blog_trainingszeiten:
+    path:   /trainingszeiten
+    defaults: { _controller: AcmeBlogBundle:Default:trainingszeiten }
+
 ##
 ## Admin routes
-##   
+##
 
 acme_blog_admin:
     path:   /admin
     defaults: { _controller: AcmeAdminBundle:Admin:admin }
-    
+
 acme_blog_login:
     path:   /login
     defaults: { _controller: AcmeBlogBundle:Security:login }
-    
+
 acme_blog_logincheck:
     path:   /admin/login_check
     defaults: { _controller: AcmeBlogBundle:Security:login_check }
-    
+
 logout:
     path: /admin/logout
