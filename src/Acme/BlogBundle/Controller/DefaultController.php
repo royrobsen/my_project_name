@@ -109,8 +109,6 @@ class DefaultController extends Controller
                      'Kein Beitrag mit dem Alias: ' . $alias );
         }
          
-
-        dump($article);
         return $this->render('AcmeBlogBundle:Default:article.html.twig', array('article' => $article)); 
          
      }
@@ -154,7 +152,13 @@ class DefaultController extends Controller
         return $this->render('AcmeBlogBundle:Default:trainingszeiten.html.twig');
     
      }
-          
+
+    public function eventsAction() {
+         
+        return $this->render('AcmeBlogBundle:Default:events.html.twig');
+    
+     }
+     
     public function mannschaftAction() {
         
         $users = $this->getDoctrine()
@@ -258,4 +262,71 @@ class DefaultController extends Controller
     
     } 
      
+    public function jsoneventsAction() {
+        
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery( "SELECT e FROM AcmeBlogBundle:Events e");
+        
+        $events = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
+        
+        $json = array("success" => 1);
+        
+        foreach ($events as $event) {
+            
+            $start = strtotime($event['startdate']->format('Y-m-d H:i:s'))*1000;
+            $end = strtotime($event['enddate']->format('Y-m-d H:i:s'))*1000;
+            $url = "termin/preview/" . $event['id'];
+            $results[] = array("id" => $event['id'], "title" => $event['title'], "url" => $url, "start" => $start, "end" => $end);
+                    
+        }
+
+        $json['result'] = $results;
+                        
+        $response = new Response();
+        
+        $response->setContent(json_encode($json));
+        
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
+    
+    } 
+    
+    public function singleeventAction($id) {
+        
+         
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery( "SELECT e FROM AcmeBlogBundle:Events e WHERE e.id = :id");
+        $query->setParameter('id', $id);
+        
+        $event = $query->getResult();
+        
+        if ( !$event ) {
+            throw $this->createNotFoundException(
+                     'Kein Termin mit der ID: ' . $id );
+        }
+         
+        return $this->render('AcmeBlogBundle:Default:singleevent.html.twig', array('event' => $event)); 
+         
+    
+    } 
+    
+     public function eventAction($alias)
+     {
+         
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery( "SELECT e FROM AcmeBlogBundle:Events e WHERE e.alias = :alias");
+        $query->setParameter('alias', $alias);
+        
+        $event = $query->getResult();
+        
+        if ( !$event ) {
+            throw $this->createNotFoundException(
+                     'Kein Termin mit dem Alias: ' . $alias );
+        }
+         
+        return $this->render('AcmeBlogBundle:Default:event.html.twig', array('event' => $event)); 
+         
+     }
+    
 }

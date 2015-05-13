@@ -1,22 +1,125 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id='fullcontent'>
+    <div class="container">
+        <div class="col-xs-12 col-md-8">
+            <div class="box-blue">
         <h1>{{ article.0.headline }}</h1>
-            <ul class='list'>
-                <li style="list-style-image: url('{{ asset('bundles/acmeblog/images/date.png') }}');" title='Veröffentlicht'> {{ article.0.createdDate|date('d.m.y') }}</li>
-                <li style="list-style-image: url('{{ asset('bundles/acmeblog/images/author.png') }}')" title='Autor'>{{ article.0.author.firstName }} {{ article.0.author.name }}</li>  
-                <li style="list-style-image: url('{{ asset('bundles/acmeblog/images/categorie.png') }}')" title='Kategorie'>{{ article.0.category.catName }}</li>
-            </ul>
+        <hr />
         {{ article.0.articleContent|raw}}
-    </div>
-    <div id='right_sector'>
-        <div class='rechtespalte'><h1>Nicht angemeldet</h1>
-            <table>
-                <tr>
-                    <td><a href='login'>Jetzt Einloggen</></td>
-                </tr> 
-            </table>
-        </div>    
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-md-12">
+                <div class="tab">Autor</div>
+                <div class="box-blue">
+                    <h3>{{article.0.author.firstName}} <br />
+                        <b>{{article.0.author.name}}</b></h3>
+                    <ul class='list'>
+                        <li title='Veröffentlicht'> <span class="fa fa-calendar"></span> {{ article.0.createdDate|date('d.m.y') }}</li>
+                        <li title='Kategorie'><span class="fa fa-file-text"></span> {{ article.0.category.catName }}</li>
+                    </ul>
+                </div>  
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="tab">Aufstellung</div>
+                <div class="box-field">
+                    <div class="player-box">
+                        <table class="player-table-mf">
+                            <tr>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.ls}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.ms}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.rs}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.zom}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.lm}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.rm}}</td>
+                            </tr>
+                            
+                        </table>
+                        <table class="player-table-av">
+                            <tr>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.zlm}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.zrm}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.lav}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.zdm}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.rav}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.liv}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.riv}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                            </tr>
+                            
+                        </table>
+                        <table class="player-table-tw">
+                            <tr>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%">{{article.0.aufgestellt.tw}}</td>
+                                <td style="text-align:center; min-width:20%"></td>
+                                <td style="text-align:center; min-width:20%"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <img src="{{ asset('bundles/acmeblog/images/lineup.jpg') }}" class="img-lineup" />
+                    
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="tab">Kader</div>
+                <div class="box-blue">
+                    <b>Trainer:</b> 
+                    <ul class="list">
+                        <li>{{article.0.aufgestellt.coach}}</li>
+                    </ul>
+                    <b>Bank:</b> 
+                    <ul class="list">
+                        <li>{{article.0.aufgestellt.sub1}}</li>
+                        <li>{{article.0.aufgestellt.sub2}}</li>
+                        <li>{{article.0.aufgestellt.sub3}}</li>
+                        <li>{{article.0.aufgestellt.sub4}}</li>
+                        <li>{{article.0.aufgestellt.sub5}}</li>
+                        <li>{{article.0.aufgestellt.sub6}}</li>
+                        <li>{{article.0.aufgestellt.sub7}}</li>
+                    </ul>
+                    <b>Wechsel:</b>
+                    <ul class="list">
+                        <li>{{article.0.aufgestellt.ch1}}</li>
+                        <li>{{article.0.aufgestellt.ch2}}</li>
+                        <li>{{article.0.aufgestellt.ch3}}</li>
+                        <li>{{article.0.aufgestellt.ch4}}</li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="tab">Teilen</div>
+                <div class="box-blue">
+                        <div id="socialshareprivacy"></div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}  

@@ -2,10 +2,6 @@ acme_blog_homepage:
     path:     /
     defaults: { _controller: AcmeBlogBundle:Default:index }
 
-acme_blog_user:
-    path:     /show/{id}
-    defaults: { _controller: AcmeBlogBundle:Default:show }
-
 acme_blog_article:
     path:   /article/{alias}
     defaults: { _controller: AcmeBlogBundle:Default:article }
@@ -45,6 +41,23 @@ acme_blog_jsonallreports:
 acme_blog_trainingszeiten:
     path:   /trainingszeiten
     defaults: { _controller: AcmeBlogBundle:Default:trainingszeiten }
+    
+acme_blog_events:
+    path:   /termine
+    defaults: { _controller: AcmeBlogBundle:Default:events }
+
+acme_blog_singleevent:
+    path:   /termin/preview/{id}
+    defaults: { _controller: AcmeBlogBundle:Default:singleevent }
+
+acme_blog_event:
+    path:   /termin/{alias}
+    defaults: { _controller: AcmeBlogBundle:Default:event }
+
+acme_blog_jsonevents:
+    path:   /jsonevents
+    defaults: { _controller: AcmeBlogBundle:Default:jsonevents }
+
 
 ##
 ## Admin routes
@@ -59,8 +72,8 @@ acme_blog_login:
     defaults: { _controller: AcmeBlogBundle:Security:login }
 
 acme_blog_logincheck:
-    path:   /admin/login_check
+    path:   /login_check
     defaults: { _controller: AcmeBlogBundle:Security:login_check }
 
 logout:
-    path: /admin/logout
+    path: /logout

@@ -367,7 +367,8 @@ div.required .control-label:before {
     .header .top_panel:after {
       clear: both; }
   .header .wr {
-    padding-top: 30px; }
+    padding-top: 30px; 
+  background: white;}
   .header .dropdown-menu {
     background: #fff;
     color: #777; }

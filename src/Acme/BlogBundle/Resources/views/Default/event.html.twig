@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="col-xs-12 col-md-8">
+            <div class="box-blue">
+        <h1>{{ event.0.title }}</h1>
+        <hr />
+        {{ event.0.description|raw}}
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-md-12">
+                <div class="tab">Autor</div>
+                <div class="box-blue">
+                </div>  
+            </div>
+        </div>
+    </div>
+{% endblock %}  

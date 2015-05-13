@@ -4,8 +4,8 @@ parameters:
     database_host: localhost
     database_port: null
     database_name: vfldepr
-    database_user: vfldbname
-    database_password: sunnycuba
+    database_user: root
+    database_password: null
     mailer_transport: smtp
     mailer_host: smtp.mandrillapp.com
     mailer_user: no-reply@team-equipment.de

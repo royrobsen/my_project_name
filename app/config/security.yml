@@ -27,14 +27,14 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        secured_area:
-            pattern: /admin.*
+        default:
+            anonymous: ~
+            pattern: ^/
             form_login:
                 login_path: /login
-                check_path: /admin/login_check
-            logout: 
-                path: /admin/logout
+                check_path: /login_check
+            logout:
+                path:   /logout
                 target: /
             #http_basic: ~
             provider: db_provider
@@ -44,5 +44,5 @@ security:
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        #- { path: /admin/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
