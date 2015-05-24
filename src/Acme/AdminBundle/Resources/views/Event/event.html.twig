@@ -1,67 +1,154 @@
-{% extends 'adminbase.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block body %}
-    <h1>Termin bearbeiten</h1>
-	<button class='btn-primar'>Erstellen</button>
-	<div style="float: right; margin: 0 auto; width: 70px;"></div>
-            <div class='bigbox' ng-app="textAngularTest"  ng-controller="myCtrl">
-		<div class='box'>
+    <div id="page-wrapper">
+       
+            <div class="container-fluid" ng-app="textAngularTest"  ng-controller="myCtrl">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Termin bearbeiten</h1>
                     {{ form_start(form) }}
                     {{ form_errors(form) }}	
                     {% for flashMessage in app.session.flashbag.get('notice') %}
-                        <div class="message">
+                        <div class="alert alert-info">
                             {{ flashMessage }}
                         </div>
                     {% endfor %}
-                         {{ form_widget(form.title, { 'attr': {'class': 'text-input', 'style':'width: 100%; height: 1.7em; font-size: 1.2em; padding: 3px 8px; box-sizing: border-box;'} }) }}
-                        <span><b>Permalink:</b> http://vfllohbruegge3.de/event/{{event.alias}}</span> <br/>
-                        
-                        
+                    </div> 
+                    <div class="col-lg-7"> 
+                         {{ form_widget(form.title, { 'attr': {'class': 'form-control'} }) }}
+                        <div style='padding-top: 1em;'><b>Permalink:</b> http://vfllohbruegge3.de/event/{{event.alias}}</div> 
+                       
                         <div style='margin-top: 2em;'><text-angular ng-model="htmlVariable" >{{event.description|raw}}</text-angular></div>{{ form_widget(form.description, { 'attr': {'ng-bind': 'htmlVariable', 'style': 'display: none;'} }) }}
-                </div>
-                <div class='sidebar'>
-			<div class='edit-box'>
-			<h4>
-				Veröffentlichen
-			</h4>
-                            <ul>
-                                <li>Sichtbarkeit: <b>{{ event.group.groupname }}</b> <a ng-click="openTab('box two')">Bearbeiten</a></li>
-                                    <div ng-show="isOpenTab('box two')">{{form_widget(form.group, {'class':'text-input'})}}</div>
-                                <li>Erstellt am: <b>{{ event.createdDate|date('d.m.y') }}</b> <a ng-click="openTab('box three')">Bearbeiten</a></li>
-                                    <div ng-show="isOpenTab('box three')" >{{ form_widget(form.createdDate) }}</div>
-                                <li>Kategorie: <b>{{ event.eventcategory.title }}</b> <a ng-click="openTab('box four')">Bearbeiten</a></li>
-                                    <div ng-show="isOpenTab('box four')" >{{form_widget(form.eventcategory, {'class':'text-input'})}}</div>
-                            </ul>
-                        </div>   
-                        <div class='action-box'>
-                            {{form_widget(form.save, { 'attr': {'class':'btn-primar', 'style':'float: left; background: #2ea2cc; color: #FAFAFA; font-weight: 300; min-height: 23px;'}} ) }}
-                            <a id='bin' href="bin/{{ event.id }}">Papierkorb</a>
-                            <div style="clear:both;">
+                    </div>
+                    <div class="col-lg-5"> 
+			<div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>Eigenschaften</h4>
                             </div>
+                        <div class="panel-body">
+                            <div id="accordion" class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse">Sichtbarkeit: <b>{{ event.group.groupname }}</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.group, { 'attr': {'class': 'form-control'}} ) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseThree" data-parent="#accordion" data-toggle="collapse">Veröffentlicht am: <b>{{ event.createdDate|date('d.m.y') }}</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.createdDate, { 'attr': {'class': 'form-control'}} ) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseFour" data-parent="#accordion" data-toggle="collapse">Kategorie: <b>{{ event.eventcategory.title }}</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.eventcategory, { 'attr': {'class': 'form-control' } } ) }}
+                                        </div>
+                                    </div>
+                                </div>      
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseFive" data-parent="#accordion" data-toggle="collapse">Startdatum</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFive" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.startdate, { 'attr': {'class': 'form-control' } } ) }}
+                                        </div>
+                                    </div>
+                                </div>     
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseSix" data-parent="#accordion" data-toggle="collapse">Enddatum</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseSix" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.enddate, { 'attr': {'class': 'form-control' } } ) }}
+                                        </div>
+                                    </div>
+                                </div>   
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseSeven" data-parent="#accordion" data-toggle="collapse">Intervall</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseSeven" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.intervall, { 'attr': {'class': 'form-control' } } ) }}
+                                        </div>
+                                    </div>
+                                </div>    
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseEight" data-parent="#accordion" data-toggle="collapse">Adresse</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseEight" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <h5>Straße</h5>
+                                            {{form_widget(form.address, { 'attr': {'class': 'form-control' } } ) }}
+                                            <h5>Postleitzahl</h5>
+                                            {{form_widget(form.zipcode, { 'attr': {'class': 'form-control' } } ) }}
+                                            <h5>Ort</h5>
+                                            {{form_widget(form.city, { 'attr': {'class': 'form-control' } } ) }}
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseNine" data-parent="#accordion" data-toggle="collapse">Spieldaten</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseNine" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <h5>Heim</h5>
+                                            {{form_widget(form.heim, { 'attr': {'class': 'form-control' } } ) }}
+                                            <h5>Gast</h5>
+                                            {{form_widget(form.gast, { 'attr': {'class': 'form-control' } } ) }}
+                                            <h5>Tore Heim</h5>
+                                            {{form_widget(form.toreHeim, { 'attr': {'class': 'form-control' } } ) }}
+                                            <h5>Tore Gast</h5>
+                                            {{form_widget(form.toreGast, { 'attr': {'class': 'form-control' } } ) }}
+                                            <h5>Logo Heim</h5>
+                                            {{form_widget(form.logoHeim, { 'attr': {'class': 'form-control' } } ) }}
+                                            <h5>Logo Gast</h5>
+                                            {{form_widget(form.logoGast, { 'attr': {'class': 'form-control' } } ) }}
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                                {{form_widget(form.save, { 'attr': {'class':'btn btn-lg btn-success'}} ) }}
                         </div>
-                </div>
-                <div class='sidebar'>
-			<div class='edit-box'>
-                            <h5>Startdatum</h5>
-                            {{form_widget(form.startdate)}}
-                            <h5>Enddatum</h5>
-                            {{form_widget(form.enddate)}}
-                            <h5>Nächstes Datum</h5>
-                            {{form_widget(form.next)}}
-                             <h5>Intervall</h5>
-                            {{form_widget(form.intervall)}}                           
                         </div>
+                    </div>
                 </div>
-                 <div class='sidebar'>
-			<div class='edit-box'>
-                            <h5>Straße</h5>
-                            {{form_widget(form.address)}}
-                            <h5>Postleitzahl</h5>
-                            {{form_widget(form.zipcode)}}
-                            <h5>Ort</h5>
-                            {{form_widget(form.city)}}
-                        </div>
-                </div>
-                    {{ form_end(form) }}
             </div>
+                    {{ form_end(form) }}
+        </div>
 {% endblock %}  

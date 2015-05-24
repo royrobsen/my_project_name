@@ -35,11 +35,16 @@ class ArticleController extends Controller
     # all articles are delivered
     #
 
-    public function jsonallarticlesAction() {
+    public function jsonallarticlesAction(Request $request) {
 
+        $request = $this->getRequest();
+        
+        $search = $request->query->get('search'); 
+        
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery( "SELECT a, u, c, s FROM AcmeBlogBundle:Articles a JOIN a.author u JOIN a.category c JOIN a.state s WHERE a.status != 2 ORDER BY a.createdDate DESC");
-
+        $query = $em->createQuery( "SELECT a, u, c, s FROM AcmeBlogBundle:Articles a JOIN a.author u JOIN a.category c JOIN a.state s WHERE a.status != 2 AND CONCAT(a.headline, CONCAT(' ', a.articleContent)) LIKE :search ORDER BY a.createdDate DESC");
+        $query->setParameter('search', '%' . $search . '%');
+        
         $articles = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
 
         $response = new Response();
@@ -56,11 +61,16 @@ class ArticleController extends Controller
     # all articles with papierkorb status are delivered
     #
 
-    public function jsonalldumpedarticlesAction() {
+    public function jsonalldumpedarticlesAction(Request $request) {
 
+        $request = $this->getRequest();
+        
+        $search = $request->query->get('search'); 
+        
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery( "SELECT a, u, c, s FROM AcmeBlogBundle:Articles a JOIN a.author u JOIN a.category c JOIN a.state s WHERE a.status = 2 ORDER BY a.createdDate DESC");
-
+        $query = $em->createQuery( "SELECT a, u, c, s FROM AcmeBlogBundle:Articles a JOIN a.author u JOIN a.category c JOIN a.state s WHERE a.status = 2 AND CONCAT(a.headline, CONCAT(' ', a.articleContent)) LIKE :search ORDER BY a.createdDate DESC");
+        $query->setParameter('search', '%' . $search . '%');
+        
         $articles = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
 
         $response = new Response();

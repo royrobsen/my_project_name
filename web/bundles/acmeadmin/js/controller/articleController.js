@@ -7,16 +7,29 @@
  $scope.pageSize = 20;
 
     $scope.datalists = [];
-
-    $http.get('/admin/jsonallarticles').success(function(data) {
-         $scope.datalists = data;
-    });  
     
+    $scope.formInfo = {};
+    var searchit = $scope.formInfo;
+        $http({
+        url: '/admin/jsonallarticles',
+        method: "GET",
+        params: searchit
+        }).success(function(data) {
+            $scope.datalists = data;
+        });
+    $scope.saveData = function() {
+        $http({
+        url: '/admin/jsonallarticles', 
+        method: "GET",
+        params: searchit
+        }).success(function(data) {
+            $scope.datalists = data;
+        });
+        $scope.curPage = 0;
+       };
      $scope.numberOfPages = function() {
 	return Math.ceil($scope.datalists.length / $scope.pageSize);
      };
          
 };
-
 });
-

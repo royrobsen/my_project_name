@@ -21,10 +21,15 @@ class EventCategoryController extends Controller
         return $this->render('AcmeAdminBundle:EventCategory:all.html.twig');
     }    
     
-     public function eventcategoryjsonAction() {
+     public function eventcategoryjsonAction(Request $request) {
         
+        $request = $this->getRequest();
+        
+        $search = $request->query->get('search');
+         
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery( "SELECT ec FROM AcmeBlogBundle:EventCategory ec ORDER BY ec.id ASC");
+        $query = $em->createQuery( "SELECT ec FROM AcmeBlogBundle:EventCategory ec WHERE ec.title LIKE :search ORDER BY ec.id ASC");
+        $query->setParameter('search', '%' . $search . '%');
         
         $eventcategory = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
             

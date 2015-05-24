@@ -140,6 +140,38 @@ acme_passwortreset:
     path:     /passwortreset/{id}
     defaults: { _controller: AcmeAdminBundle:Mail:passwortreset }
     
-acme_passwortreset:
-    path:     /pwerstellen/{token}
+acme_pwerstellen:
+    path:     /passwort-erstellen/{token}
     defaults: { _controller: AcmeAdminBundle:Mail:pwerstellen }
+    
+acme_passwortvergessen:
+    path:     /passwort-vergessen
+    defaults: { _controller: AcmeAdminBundle:Mail:pwforgot }  
+    
+#
+# Media actions
+#
+
+acme_media_all:
+    path:     /admin/media/all
+    defaults: { _controller: AcmeAdminBundle:Media:all }
+    
+acme_media_new:
+    path:     /admin/media/new
+    defaults: { _controller: AcmeAdminBundle:Media:new }
+    
+acme_media_json:
+    path:     /admin/media/json/{path}
+    defaults: { _controller: AcmeAdminBundle:Media:json }  
+    
+acme_media_folder:
+    path:     /admin/media/s/{path}
+    defaults: { _controller: AcmeAdminBundle:Media:folder }    
+    
+acme_media_file:
+    path:     /admin/media/{path}/{filename}
+    defaults: { _controller: AcmeAdminBundle:Media:file }    
+    
+
+
+    

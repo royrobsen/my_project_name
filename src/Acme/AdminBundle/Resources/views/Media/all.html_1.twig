@@ -1,0 +1,45 @@
+{% extends 'adminbase.html.twig' %}
+{% block javascripts %}
+<script src=" {{ asset('bundles/acmeadmin/js/controller/playersController.js') }} "></script>
+{% endblock %}
+{% block body %}
+    <h1>Media</h1>
+<div ng-controller='PaginationCtrl' ng-init="showData()">
+        <div class="pagination pagination-centered" ng-show="datalists.length" style="float: right; margin:0;">
+            <ul class="pagination-controle pagination">
+                <li>
+                    <button type="button" class="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1"> &lt; Zurück</button>
+                </li>
+                 <li>
+                    <span style="float: none !important;">Seite [[curPage + 1]] von [[ numberOfPages() ]]</span>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-primary" ng-disabled="curPage >= datalists.length/pageSize - 1" ng-click="curPage = curPage+1">Weiter &gt;</button>
+                </li>
+            </ul>
+        </div>
+        {% for folder in folders%}
+            <span class="icon-folder-open" >{{folder}}</span>
+        {% endfor %}
+<!--
+            <table id='article-table' width="100%">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Benutzername</th>
+                    <th>E-Mail</th>
+                    <th>Gruppe</th>
+                    <th>Login</th>
+                </tr>
+                <tr ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td><input type="checkbox" value="[[datalist.id]]"></td>
+                    <td><b><a href="[[datalist.id]]">[[datalist.firstName]] [[datalist.name]]</a></b><div class="actions_div"><a href="[[datalist.id]]">Bearbeiten</a>  |  <a style="color: red;" href="delete/[[datalist.id]]">Löschen</a> </div></td>
+                    <td>[[datalist.username]]</td>
+                    <td>[[datalist.email]]</td>
+                    <td>[[datalist.group.groupName]]</td>
+                    <td>[[datalist.lastVisit.date |login]]</td>
+                </tr>
+            </table>
+-->
+        </div>
+{% endblock %}  

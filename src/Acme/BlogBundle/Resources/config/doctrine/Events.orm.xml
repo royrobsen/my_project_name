@@ -22,6 +22,12 @@
     <field name="place" type="string" column="place" length="80" nullable="true"/>
     <field name="city" type="string" column="city" length="50" nullable="false"/>
     <field name="address" type="string" column="address" length="150" nullable="false"/>
+    <field name="heim" type="string" column="heim" length="150" nullable="true"/>
+    <field name="gast" type="string" column="gast" length="150" nullable="true"/>
+    <field name="toreHeim" type="string" column="tore_heim" length="150" nullable="true"/>
+    <field name="toreGast" type="string" column="tore_gast" length="150" nullable="true"/>
+    <field name="logoHeim" type="string" column="logo_heim" length="150" nullable="true"/>
+    <field name="logoGast" type="string" column="logo_gast" length="150" nullable="true"/>
     <field name="zipcode" type="string" column="zipcode" length="5" nullable="false"/>
     <field name="description" type="text" column="description" length="16777215" nullable="false"/>
     <field name="intervall" type="integer" column="intervall" nullable="false"/>

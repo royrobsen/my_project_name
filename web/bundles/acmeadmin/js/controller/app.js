@@ -1,4 +1,4 @@
-    app = angular.module("MyApp", ['textAngular', 'ui.bootstrap']) .config(['$interpolateProvider', function ($interpolateProvider) {
+    app = angular.module("MyApp", ['textAngular']) .config(['$interpolateProvider', function ($interpolateProvider) {
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
 

@@ -1,41 +1,84 @@
-{% extends 'adminbase.html.twig' %}
+{% extends 'admin.html.twig' %}
 {% block javascripts %}
 <script src=" {{ asset('bundles/acmeadmin/js/controller/eventcategory.js') }} "></script>
 {% endblock %}
 {% block body %}
-    <h1>Kategorien</h1>
-    <a href="new"><button class='btn-primar'>Erstellen</button></a>
-<div ng-controller='PaginationCtrl' ng-init="showData()">
-        <div class="pagination pagination-centered" ng-show="datalists.length" style="float: right; margin: 0;">
-            <ul class="pagination-controle pagination">
-                <li>
-                    <button type="button" class="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1"> &lt; Zurück</button>
-                </li>
-                 <li>
-                    <span style="float: none !important;">Seite [[curPage + 1]] von [[ numberOfPages() ]]</span>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-primary" ng-disabled="curPage >= datalists.length/pageSize - 1" ng-click="curPage = curPage+1">Weiter &gt;</button>
-                </li>
-            </ul>
-        </div>
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="message">
-                    {{ flashMessage }}
+        <div id="page-wrapper">
+
+            <div class="container-fluid" ng-controller='PaginationCtrl' ng-init="showData()">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Terminkategorien
+                        </h1>
+                        <div class="col-lg-2">
+                            <div class="form-group input-group">
+                            <form novalidate class="form-horizontal" role="form">
+                                <input class="form-control" type="text" ng-model="formInfo.search">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" ng-click="saveData()" type="submit"><i class="fa fa-search"></i></button>                
+                                    </span>                         
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <a href="/admin/category/new"><button class="btn btn-primary">Neue Kategorie</button>  </a>
+                        </div>   
+                        <div class="col-lg-3">
+                            <div class="pagination pagination-center" style="margin-top: -20px !important;" ng-show="datalists.length">
+                                <ul class="pagination">
+                                    <li><button class="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1"> &lt; Zurück</button></li>
+                                    <li class="active"><button class="btn btn-default" >Seite [[curPage + 1]] von [[ numberOfPages() ]]</button></li>
+                                    <li><button class="btn btn-primary" ng-disabled="curPage >= datalists.length/pageSize - 1" ng-click="curPage = curPage+1">Weiter &gt;</button></li>
+                                </ul>    
+                            </div>
+                        </div>   
+                    </div>
                 </div>
-            {% endfor %}
-            <table id='article-table' width="100%">
-                <tr>
-                    <th></th>
-                    <th>Id</th>
-                    <th>Kategorie</th>
-                </tr>
-                
-                <tr ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize" ng-class-odd="odd" ng-class-even="even">
-                    <td><input type="checkbox" value="[[datalist.id]]"></td>
-                    <td>[[datalist.id]]</td>
-                    <td><b><a href="[[datalist.id]]">[[datalist.title]]</a></b><div class="actions_div"><a href="[[datalist.id]]">Bearbeiten</a>  |  <a style="color: red;" href="delete/[[datalist.id]]">Löschen</a></div></td>
-                </tr>
-            </table>
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-info">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                       <th>Id</th>
+                                       <th>Kategorie</th>
+                                    </tr>
+                                </thead>
+                                <tr ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize" ng-class-odd="'odd'" ng-class-even="'even'">                                    <td>[[datalist.id]]</td>
+                                    <td><b>[[datalist.title]]</b><div class="actions_div"><a href="[[datalist.id]]">Bearbeiten</a>  |  <a style="color: red; cursor: pointer;" data-toggle="modal" data-target="#myModal" ng-click="$parent.catid = datalist.id ">Löschen</a></div></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Kategorie löschen</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Die Kategorie wird unwiderruflich gelöscht! Außerdem werden alle Termine die in diese Kategorie fallen beschädigt!</p>
+                      </div>
+                      <div ng-cloak class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+                        <a href="delete/[[catid]]"><button type="button" class="btn btn-danger">Löschen</button></a>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </div>
+            
         </div>
+                <!-- /.row -->
 {% endblock %}  

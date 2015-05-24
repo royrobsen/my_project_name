@@ -16,25 +16,52 @@ class DefaultController extends Controller
                 ->getRepository('AcmeBlogBundle:Events');
                 
         $queryEvents = $events->createQueryBuilder('e')
-                ->where('e.next >= :nextDate')
-                ->setParameter('nextDate', date('Y-m-d'))
-                ->orderBy('e.next', 'ASC')
+                ->where('e.startdate >= :startdate')
+                ->setParameter('startdate', date('Y-m-d'))
+                ->orderBy('e.startdate  ', 'ASC')
                 ->setMaxResults(4)
                 ->getQuery();
         
         $events = $queryEvents->getResult();
         
+        // last game we played with scores       
+        $lastgame = $this->getDoctrine()
+                ->getRepository('AcmeBlogBundle:Events');
+                
+        $queryLastGame = $lastgame->createQueryBuilder('e')
+                ->where('e.next <= :nextDate AND e.eventcatId = 2 OR e.next <= :nextDate AND e.eventcatId = 3')
+                ->setParameter('nextDate', date('Y-m-d'))
+                ->orderBy('e.next', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery();
+        
+        $lastgame = $queryLastGame->getResult();
+
         $articles = $this->getDoctrine()
                 ->getRepository('AcmeBlogBundle:Articles');
         
         $queryArticles = $articles->createQueryBuilder('a')
-                ->where('a.createdDate <= :date')
+                ->where('a.createdDate <= :date AND a.status != :status AND a.status != :status2')
                 ->setParameter('date', date('Y-m-d'))
+                ->setParameter('status', "2")
+                ->setParameter('status2', "3")
+                ->orderBy('a.createdDate', 'DESC')
+                ->setMaxResults(6)
+                ->getQuery();
+        
+        $articles = $queryArticles->getResult();
+        
+        $announce = $this->getDoctrine()
+                ->getRepository('AcmeBlogBundle:Articles');
+        
+        $queryAnnouncements = $announce->createQueryBuilder('a')
+                ->where('a.status = :status')
+                ->setParameter('status', "3")
                 ->orderBy('a.createdDate', 'DESC')
                 ->setMaxResults(4)
                 ->getQuery();
         
-        $articles = $queryArticles->getResult();
+        $announce = $queryAnnouncements->getResult();
         
         function get_fcontent( $url,  $javascript_loop = 0, $timeout = 5 ) {
             $url = str_replace( "&amp;", "&", urldecode(trim($url)) );
@@ -92,7 +119,7 @@ class DefaultController extends Controller
         $i++;
     }
 
-        return $this->render('AcmeBlogBundle:Default:index.html.twig', array('events' => $events, 'articles' => $articles, 'table' => $table));
+        return $this->render('AcmeBlogBundle:Default:index.html.twig', array('events' => $events, 'articles' => $articles, 'table' => $table, 'lastgame' => $lastgame, 'announces' => $announce));
     }
     
      public function articleAction($alias)

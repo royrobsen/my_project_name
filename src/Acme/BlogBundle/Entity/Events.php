@@ -640,4 +640,144 @@ class Events
     {
         return $this->group;
     }
+    /**
+     * @var string
+     */
+    private $toreHeim;
+
+    /**
+     * @var string
+     */
+    private $toreGast;
+
+    /**
+     * @var string
+     */
+    private $logoHeim;
+
+    /**
+     * @var string
+     */
+    private $logoGast;
+
+    /**
+     * @var \Acme\BlogBundle\Entity\EventCategory
+     */
+    private $eventcat;
+
+
+    /**
+     * Set toreHeim
+     *
+     * @param string $toreHeim
+     * @return Events
+     */
+    public function setToreHeim($toreHeim)
+    {
+        $this->toreHeim = $toreHeim;
+
+        return $this;
+    }
+
+    /**
+     * Get toreHeim
+     *
+     * @return string 
+     */
+    public function getToreHeim()
+    {
+        return $this->toreHeim;
+    }
+
+    /**
+     * Set toreGast
+     *
+     * @param string $toreGast
+     * @return Events
+     */
+    public function setToreGast($toreGast)
+    {
+        $this->toreGast = $toreGast;
+
+        return $this;
+    }
+
+    /**
+     * Get toreGast
+     *
+     * @return string 
+     */
+    public function getToreGast()
+    {
+        return $this->toreGast;
+    }
+
+    /**
+     * Set logoHeim
+     *
+     * @param string $logoHeim
+     * @return Events
+     */
+    public function setLogoHeim($logoHeim)
+    {
+        $this->logoHeim = $logoHeim;
+
+        return $this;
+    }
+
+    /**
+     * Get logoHeim
+     *
+     * @return string 
+     */
+    public function getLogoHeim()
+    {
+        return $this->logoHeim;
+    }
+
+    /**
+     * Set logoGast
+     *
+     * @param string $logoGast
+     * @return Events
+     */
+    public function setLogoGast($logoGast)
+    {
+        $this->logoGast = $logoGast;
+
+        return $this;
+    }
+
+    /**
+     * Get logoGast
+     *
+     * @return string 
+     */
+    public function getLogoGast()
+    {
+        return $this->logoGast;
+    }
+
+    /**
+     * Set eventcat
+     *
+     * @param \Acme\BlogBundle\Entity\EventCategory $eventcat
+     * @return Events
+     */
+    public function setEventcat(\Acme\BlogBundle\Entity\EventCategory $eventcat = null)
+    {
+        $this->eventcat = $eventcat;
+
+        return $this;
+    }
+
+    /**
+     * Get eventcat
+     *
+     * @return \Acme\BlogBundle\Entity\EventCategory 
+     */
+    public function getEventcat()
+    {
+        return $this->eventcat;
+    }
 }

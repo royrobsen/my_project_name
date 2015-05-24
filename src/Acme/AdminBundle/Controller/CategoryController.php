@@ -21,10 +21,15 @@ class CategoryController extends Controller
         return $this->render('AcmeAdminBundle:Category:categories.html.twig');
     }    
     
-     public function categoriesjsonAction() {
+     public function categoriesjsonAction(Request $request) {
         
+        $request = $this->getRequest();
+        
+        $search = $request->query->get('search'); 
+         
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery( "SELECT c, g FROM AcmeBlogBundle:Categories c JOIN c.group g ORDER BY c.id ASC");
+        $query = $em->createQuery( "SELECT c, g FROM AcmeBlogBundle:Categories c JOIN c.group g WHERE CONCAT(c.catName, CONCAT(' ', c.description)) LIKE :search ORDER BY c.id ASC");
+        $query->setParameter('search', '%' . $search . '%');
         
         $categories = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
             

@@ -26,10 +26,15 @@ class PlayersController extends Controller
     # all users are delivered
     #    
 
-    public function jsonAction() {
+    public function jsonAction(Request $request) {
          
+        $request = $this->getRequest();
+        
+        $search = $request->query->get('search'); 
+        
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery( "SELECT u, ug FROM AcmeBlogBundle:Users u JOIN u.group ug ORDER BY u.createdDate DESC");
+        $query = $em->createQuery( "SELECT u, ug FROM AcmeBlogBundle:Users u JOIN u.group ug WHERE CONCAT(u.firstName, CONCAT(' ', u.name), CONCAT(' ', u.username)) LIKE :search ORDER BY u.createdDate DESC");
+        $query->setParameter('search', '%' . $search . '%');
         
         $players = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
             
@@ -62,8 +67,10 @@ class PlayersController extends Controller
                 if ($form->isValid()) {
                     
                     if($form['attachment']->getData()) {
-                        $dir = __DIR__ . '/../../../../web/bundles/acmeblog/images/players/';
-                        $form['attachment']->getData()->move($dir, $player->getFotoid() . '.jpg');
+                        $dir = __DIR__ . '/../../../../web/uploads/players/';
+                        $extension = $form['attachment']->getData()->getClientOriginalExtension();
+                        $form['attachment']->getData()->move($dir, $player->getFotoid() . '.' . $extension);
+                        $player->setMimeType('.' . $extension);
                     }
                                       
                     $em->persist($player);

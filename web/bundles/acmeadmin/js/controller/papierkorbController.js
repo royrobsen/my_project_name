@@ -5,16 +5,31 @@
 
  $scope.curPage = 0;
  $scope.pageSize = 20;
- v
-    $http.get('/admin/jsonalldumpedarticles').success(function(data) {
-         $scope.datalists = data;
-    });  
+
+    $scope.datalists = [];
     
+    $scope.formInfo = {};
+    var searchit = $scope.formInfo;
+        $http({
+        url: '/admin/jsonalldumpedarticles',
+        method: "GET",
+        params: searchit
+        }).success(function(data) {
+            $scope.datalists = data;
+        });
+    $scope.saveData = function() {
+        $http({
+        url: '/admin/jsonalldumpedarticles', 
+        method: "GET",
+        params: searchit
+        }).success(function(data) {
+            $scope.datalists = data;
+        });
+        $scope.curPage = 0;
+       };
      $scope.numberOfPages = function() {
-				return Math.ceil($scope.datalists.length / $scope.pageSize);
-			};
+	return Math.ceil($scope.datalists.length / $scope.pageSize);
+     };
          
 };
-
 });
-

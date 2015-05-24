@@ -26,11 +26,16 @@ class EventController extends Controller
     # all events are delivered
     #    
 
-    public function jsoneventsAction() {
+    public function jsoneventsAction(Request $request) {
          
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery( "SELECT e, ec, ug FROM AcmeBlogBundle:Events e JOIN e.eventcategory ec JOIN e.group ug ORDER BY e.createdDate DESC");
+        $request = $this->getRequest();
         
+        $search = $request->query->get('search');
+        
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery( "SELECT e, ec, ug FROM AcmeBlogBundle:Events e JOIN e.eventcategory ec JOIN e.group ug WHERE CONCAT(e.title, CONCAT(' ', e.description)) LIKE :search ORDER BY e.createdDate DESC");
+        $query->setParameter('search', '%' . $search . '%');
+                
         $events = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
             
         $response = new Response();

@@ -19,6 +19,7 @@
     <field name="games" type="integer" column="games" nullable="false"/>
     <field name="position" type="string" column="position" length="20" nullable="false"/>
     <field name="fotoid" type="integer" column="fotoid" nullable="false"/>
+    <field name="mimeType" type="string" column="mime_type" nullable="true"/>
     <field name="ersatzbank" type="integer" column="ersatzbank" nullable="false"/>
     <one-to-many
         field="article"

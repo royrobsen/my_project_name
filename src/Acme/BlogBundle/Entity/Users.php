@@ -86,6 +86,11 @@ class Users implements UserInterface, \Serializable
     private $fotoid;
 
     /**
+     * @var string
+     */
+    private $mimeType;
+    
+    /**
      * @var integer
      */
     private $ersatzbank;
@@ -440,6 +445,29 @@ class Users implements UserInterface, \Serializable
         return $this->fotoid;
     }
 
+    /**
+     * Set mimeType
+     *
+     * @param string $mimeType
+     * @return Users
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
+
+        return $this;
+    }
+
+    /**
+     * Get mimeType
+     *
+     * @return string 
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
+    }
+    
     /**
      * Set ersatzbank
      *

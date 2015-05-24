@@ -1,90 +1,206 @@
-{% extends 'adminbase.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block body %}
-    <h1>Beitrag bearbeiten</h1>
-	<button class='btn-primar'>Erstellen</button>
-	<div style="float: right; margin: 0 auto; width: 70px;"></div>
-            <div class='bigbox' ng-app="textAngularTest"  ng-controller="myCtrl">
-		<div class='box'>
+    <div id="page-wrapper">
+       
+            <div class="container-fluid" ng-app="textAngularTest"  ng-controller="myCtrl">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Beitrag bearbeiten</h1>
                     {{ form_start(form) }}
                     {{ form_errors(form) }}	
                     {% for flashMessage in app.session.flashbag.get('notice') %}
-                        <div class="message">
+                        <div class="alert alert-info">
                             {{ flashMessage }}
                         </div>
                     {% endfor %}
-                         {{ form_widget(form.headline, { 'attr': {'class': 'text-input', 'style':'width: 100%; height: 1.7em; font-size: 1.2em; padding: 3px 8px; box-sizing: border-box;'} }) }}
-                        <span><b>Permalink:</b> http://vfllohbruegge3.de/article/{{article.alias}}</span> <br/>
-                        
-                        
+                    </div> 
+                    <div class="col-lg-7"> 
+                         {{ form_widget(form.headline, { 'attr': {'class': 'form-control'} }) }}
+                        <div style='padding-top: 1em;'><b>Permalink:</b> http://vfllohbruegge3.de/article/{{article.alias}}</div> 
+                       
                         <div style='margin-top: 2em;'><text-angular ng-model="htmlVariable" >{{article.articleContent|raw}}</text-angular></div>{{ form_widget(form.articleContent, { 'attr': {'ng-bind': 'htmlVariable', 'style': 'display: none;'} }) }}
-                </div>
-                <div class='sidebar'>
-			<div class='edit-box'>
-			<h4>
-				Veröffentlichen
-			</h4>
-                            <ul>
-                                <li>Status: <b>{{article.state.status}}</b> <a ng-click="openTab('box one')">Bearbeiten</a></li>
-                                    <div ng-show="isOpenTab('box one')">{{ form_widget(form.state) }}</div>
-                                <li>Sichtbarkeit: <b>{{ article.group.groupname }}</b> <a ng-click="openTab('box two')">Bearbeiten</a></li>
-                                    <div ng-show="isOpenTab('box two')">{{form_widget(form.group, {'class':'text-input'})}}</div>
-                                <li>Veröffentlicht am: <b>{{ article.createdDate|date('d.m.y') }}</b> <a ng-click="openTab('box three')">Bearbeiten</a></li>
-                                    <div ng-show="isOpenTab('box three')" >{{ form_widget(form.createdDate) }}</div>
-                                <li>Kategorie: <b>{{ article.category.catName }}</b> <a ng-click="openTab('box four')">Bearbeiten</a></li>
-                                    <div ng-show="isOpenTab('box four')" >{{form_widget(form.category, {'class':'text-input'})}}</div>
-                            </ul>
-                        </div>   
-                        <div class='action-box'>
-                            {{form_widget(form.save, { 'attr': {'class':'btn-primar', 'style':'float: left; background: #2ea2cc; color: #FAFAFA; font-weight: 300; min-height: 23px;'}} ) }}
-                            <a id='bin' href="bin/{{ article.id }}">Papierkorb</a><a id='confdelete' style='display: none;' >Wirklich löschen?</a>
-                            <div style="clear:both;">
+                    </div>
+                    <div class="col-lg-5"> 
+			<div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>Eigenschaften</h4>
+                            </div>
+                        <div class="panel-body">
+                            <div id="accordion" class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseOne" data-parent="#accordion" data-toggle="collapse">Status: <b>{{article.state.status}}</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.state, { 'attr': {'class': 'form-control'}} ) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse">Sichtbarkeit: <b>{{ article.group.groupname }}</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.group, { 'attr': {'class': 'form-control'}} ) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseThree" data-parent="#accordion" data-toggle="collapse">Veröffentlicht am: <b>{{ article.createdDate|date('d.m.y') }}</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.createdDate, { 'attr': {'class': 'form-control'}} ) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseFour" data-parent="#accordion" data-toggle="collapse">Kategorie: <b>{{ article.category.catName }}</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {{ form_widget(form.category, { 'attr': {'class': 'form-control', 'ng-model':'category.type', 'ng-init=category.type':article.category.id } } ) }}
+                                        </div>
+                                    </div>
+                                </div>                              
+                            </div>
+                                {{form_widget(form.save, { 'attr': {'class':'btn btn-lg btn-success'}} ) }}
+                                <a id='bin' href="bin/{{ article.id }}" style="color: #d9534f">Papierkorb</a>
+                        </div>
+                        </div>
+                        <div class="panel panel-default" ng-if="category.type == 1">
+                            <div class="panel-heading">
+                                <h4>Aufstellung</h4>
+                            </div>
+                        <div class="panel-body">
+                            <div id="accordion" class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#teamOne" data-parent="#accordion" data-toggle="collapse">Torwart</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="teamOne" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            {{ form_widget(form.aufgestellt.tw, { 'attr': {'class': 'form-control', 'placeholder':'Torwart'} }) }}                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#teamTwo" data-parent="#accordion" data-toggle="collapse">Abwehr</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="teamTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            {{ form_widget(form.aufgestellt.lav, { 'attr': {'class': 'form-control', 'placeholder':'R. Außenverteidiger'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.liv, { 'attr': {'class': 'form-control', 'placeholder':'L. Innenverteidiger'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.iv, { 'attr': {'class': 'form-control', 'placeholder':'Libero'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.riv, { 'attr': {'class': 'form-control', 'placeholder':'R. Innenverteidiger'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.rav, { 'attr': {'class': 'form-control', 'placeholder':'R. Außenverteidiger'} }) }} 
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#teamThree" data-parent="#accordion" data-toggle="collapse">Mittelfeld</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="teamThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            {{ form_widget(form.aufgestellt.lm, { 'attr': {'class': 'form-control', 'placeholder':'L. Mittelfeld'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.zlm, { 'attr': {'class': 'form-control', 'placeholder':'L. Zentral'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.zrm, { 'attr': {'class': 'form-control', 'placeholder':'R. Zentral'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.zdm, { 'attr': {'class': 'form-control', 'placeholder':'Zentral defensiv'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.zom, { 'attr': {'class': 'form-control', 'placeholder':'Zentral offensiv'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.rm, { 'attr': {'class': 'form-control', 'placeholder':'R. Mittelfeld'} }) }}
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#teamFour" data-parent="#accordion" data-toggle="collapse">Sturm</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="teamFour" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            {{ form_widget(form.aufgestellt.ls, { 'attr': {'class': 'form-control', 'placeholder':'Linker Stürmer'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.ms, { 'attr': {'class': 'form-control', 'placeholder':'Mittelstürmer'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.rs, { 'attr': {'class': 'form-control', 'placeholder':'Rechter Stürmer'} }) }}
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#teamFive" data-parent="#accordion" data-toggle="collapse">Trainer</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="teamFive" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            {{ form_widget(form.aufgestellt.coach, { 'attr': {'class': 'form-control', 'placeholder':'Trainer'} }) }}
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#teamSix" data-parent="#accordion" data-toggle="collapse">Ersatzbank</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="teamSix" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            {{ form_widget(form.aufgestellt.sub1, { 'attr': {'class': 'form-control', 'placeholder':'Ersatzspieler'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.sub2, { 'attr': {'class': 'form-control', 'placeholder':'Ersatzspieler'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.sub3, { 'attr': {'class': 'form-control', 'placeholder':'Ersatzspieler'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.sub4, { 'attr': {'class': 'form-control', 'placeholder':'Ersatzspieler'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.sub5, { 'attr': {'class': 'form-control', 'placeholder':'Ersatzspieler'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.sub6, { 'attr': {'class': 'form-control', 'placeholder':'Ersatzspieler'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.sub7, { 'attr': {'class': 'form-control', 'placeholder':'Ersatzspieler'} }) }}                                        
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#teamSeven" data-parent="#accordion" data-toggle="collapse">Wechsel</b></a>
+                                        </h4>
+                                    </div>
+                                    <div id="teamSeven" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            {{ form_widget(form.aufgestellt.ch1, { 'attr': {'class': 'form-control', 'placeholder':'z.B. X für Y'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.ch2, { 'attr': {'class': 'form-control', 'placeholder':'z.B. X für Y'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.ch3, { 'attr': {'class': 'form-control', 'placeholder':'z.B. X für Y'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.ch4, { 'attr': {'class': 'form-control', 'placeholder':'z.B. X für Y'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.ch5, { 'attr': {'class': 'form-control', 'placeholder':'z.B. X für Y'} }) }} <br />
+                                            {{ form_widget(form.aufgestellt.ch6, { 'attr': {'class': 'form-control', 'placeholder':'z.B. X für Y'} }) }}                                  
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                </div>
-                <div class='sidebar'>
-                    <div class='edit-box'>
-                    <h4>
-                        Aufstellung
-                    </h4>
-                        <h5>Tor <a ng-click="openTab('box tw')">Bearbeiten</a></h5>
-                        <div ng-show="isOpenTab('box tw')">{{ form_widget(form.aufgestellt.tw, { 'attr': {'class': 'text-input', 'placeholder':'Torwart'} }) }}</div>
-                        <h5>Abwehr <a ng-click="openTab('box ab')">Bearbeiten</a></h5>
-                        <div ng-show="isOpenTab('box ab')">{{ form_widget(form.aufgestellt.lav, { 'attr': {'class': 'text-input', 'placeholder':'L. Außenverteidiger'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.liv, { 'attr': {'class': 'text-input', 'placeholder':'L. Innenverteidiger'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.iv, { 'attr': {'class': 'text-input', 'placeholder':'Libero'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.riv, { 'attr': {'class': 'text-input', 'placeholder':'R. Innenverteidiger'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.rav, { 'attr': {'class': 'text-input', 'placeholder':'R. Außenverteidiger'} }) }} </div>
-                        <h5>Mittelfeld <a ng-click="openTab('box mi')">Bearbeiten</a></h5>
-                        <div ng-show="isOpenTab('box mi')">{{ form_widget(form.aufgestellt.lm, { 'attr': {'class': 'text-input', 'placeholder':'L. Mittelfeld'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.zlm, { 'attr': {'class': 'text-input', 'placeholder':'L. Zentral'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.zrm, { 'attr': {'class': 'text-input', 'placeholder':'R. Zentral'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.zdm, { 'attr': {'class': 'text-input', 'placeholder':'Zentral defensiv'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.zom, { 'attr': {'class': 'text-input', 'placeholder':'Zentral offensiv'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.rm, { 'attr': {'class': 'text-input', 'placeholder':'R. Mittelfeld'} }) }}</div>
-                        <h5>Sturm <a ng-click="openTab('box st')">Bearbeiten</a></h5>
-                        <div ng-show="isOpenTab('box st')">{{ form_widget(form.aufgestellt.ls, { 'attr': {'class': 'text-input', 'placeholder':'Linker Stürmer'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.ms, { 'attr': {'class': 'text-input', 'placeholder':'Mittelstürmer'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.rs, { 'attr': {'class': 'text-input', 'placeholder':'Rechter Stürmer'} }) }}</div>
-                        <h5>Trainer <a ng-click="openTab('box tr')">Bearbeiten</a></h5>
-                        <div ng-show="isOpenTab('box tr')">{{ form_widget(form.aufgestellt.coach, { 'attr': {'class': 'text-input', 'placeholder':'Trainer'} }) }} </div>
-                        <h5>Ersatzbank <a ng-click="openTab('box er')">Bearbeiten</a></h5>
-                        <div  ng-show="isOpenTab('box er')">{{ form_widget(form.aufgestellt.sub1, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.sub2, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.sub3, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.sub4, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.sub5, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.sub6, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.sub7, { 'attr': {'class': 'text-input', 'placeholder':'Ersatzspieler'} }) }} </div>
-                        <h5>Wechsel <a ng-click="openTab('box ch')">Bearbeiten</a></h5>
-                        <div ng-show="isOpenTab('box ch')">{{ form_widget(form.aufgestellt.ch1, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.ch2, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.ch3, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.ch4, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.ch5, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }} <br />
-                        {{ form_widget(form.aufgestellt.ch6, { 'attr': {'class': 'text-input', 'placeholder':'z.B. X für Y'} }) }}</div>
                     </div>
-                </div>
                     {{ form_end(form) }}
+                </div>
             </div>
+        </div>
+    </div>
 {% endblock %}  
