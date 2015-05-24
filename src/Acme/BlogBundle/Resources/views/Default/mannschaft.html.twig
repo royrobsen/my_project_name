@@ -11,7 +11,7 @@
             {% for user in users %}
                 <div class="col-xs-12 col-md-4">
                     <div class="thumbnail">
-                      <img src="/uploads/players/{{user.fotoid}}.jpg" >
+                      <img src="/uploads/players/{{user.fotoid}}{{user.mimeType}}" >
                       <div class="caption">
                         <h3>{{ user.firstName }} {{ user.name }} </h3>
                         <p>{{ user.position }}</p>
