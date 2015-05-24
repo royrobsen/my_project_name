@@ -25,7 +25,7 @@ class MediaController extends Controller
         foreach ($finder as $dir) {
             $folders[] = $dir->getRelativePathname();
         }
-        dump($folders);
+ 
         
         return $this->render('AcmeAdminBundle:Media:all.html.twig', array('folders' => $folders));
 
@@ -40,7 +40,7 @@ class MediaController extends Controller
         foreach ($finder as $dir) {
             $folders[] = '/uploads/'. $path . "/" . $dir->getRelativePathname();
         }
-        dump($folders);
+
         
         return $this->render('AcmeAdminBundle:Media:path.html.twig', array('folders' => $folders, 'path' => $path));
 
