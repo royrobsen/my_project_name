@@ -29,9 +29,9 @@ class DefaultController extends Controller
                 ->getRepository('AcmeBlogBundle:Events');
                 
         $queryLastGame = $lastgame->createQueryBuilder('e')
-                ->where('e.next <= :nextDate AND e.eventcatId = 2 OR e.next <= :nextDate AND e.eventcatId = 3')
-                ->setParameter('nextDate', date('Y-m-d'))
-                ->orderBy('e.next', 'DESC')
+                ->where('e.startdate <= :startdate AND e.eventcatId = 2 OR e.startdate <= :startdate AND e.eventcatId = 3')
+                ->setParameter('startdate', date('Y-m-d'))
+                ->orderBy('e.startdate', 'DESC')
                 ->setMaxResults(1)
                 ->getQuery();
         
