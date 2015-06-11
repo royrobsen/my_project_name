@@ -134,7 +134,7 @@ class MailController extends Controller
 
         $token2 = $query->getResult();
         $token1 = array_pop($token2);
-        dump($token1);
+
         if($token1->getUsed() === false) {
             
         $user = $token1->getUserid();
