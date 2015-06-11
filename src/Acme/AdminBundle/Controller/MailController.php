@@ -29,12 +29,12 @@ class MailController extends Controller
     $em2 = $this->getDoctrine()->getManager();
     $em2->persist($token);
     $em2->flush();
-    
+    $email = $form['email']->getData();
     $mailer = $this->get('mailer');
     $message = $mailer->createMessage()
         ->setSubject('Du brauchst ein neues Passwort!!')
         ->setFrom('no-reply@team-equipment.de')
-        ->setTo('rbrannath@yahoo.de')
+        ->setTo($email)
         ->setBody(
             $this->renderView(
                 // app/Resources/views/Emails/registration.html.twig
@@ -75,7 +75,7 @@ class MailController extends Controller
             $player = $em->getRepository('AcmeBlogBundle:Users')->findBy(array('email' => $form['email']->getData()));
         
             $token = new Pwtoken();
-            dump($player);
+
             $token->setUserid($player[0]->getID());
             $token->setToken(md5(uniqid()));
             $token->setUsed(0);
@@ -84,12 +84,12 @@ class MailController extends Controller
             $em2 = $this->getDoctrine()->getManager();
             $em2->persist($token);
             $em2->flush();
-
+            $email = $form['email']->getData();
             $mailer = $this->get('mailer');
             $message = $mailer->createMessage()
                 ->setSubject('Du brauchst ein neues Passwort!!')
                 ->setFrom('no-reply@team-equipment.de')
-                ->setTo('rbrannath@yahoo.de')
+                ->setTo($email)
                 ->setBody(
                     $this->renderView(
                         // app/Resources/views/Emails/registration.html.twig
@@ -108,6 +108,8 @@ class MailController extends Controller
             ;
             $mailer->send($message);
             
+            $this->get('session')->getFlashBag()->add('success', 'Wir haben eine E-Mail an deine E-Mailadresse geschickt. Dort findest du einen Link mit dem du dein Passwort ändern kannst.');
+
         }     
 
     return $this->render('AcmeBlogBundle:Security:pwforgotten.html.twig', array('form' => $form->createView()));

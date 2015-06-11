@@ -5,6 +5,17 @@
         <div class="col-xs-12 col-md-8">
             <div class="box-blue">
                 <h1>Passwort vergessen?</h1>
+                {% for flashMessage in app.session.flashbag.get('warning') %}
+                    <div class="alert alert-danger">
+                    <strong>Achtung!</strong> Da hat was nicht geklappt :-(
+                    {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                    {{ flashMessage }}
+                    </div>
+                {% endfor %}
                 <div class="form-group">
                     {{ form_start(form) }}
                     {{ form_errors(form) }}

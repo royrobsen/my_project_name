@@ -52,7 +52,7 @@
                                        <th>Kategorie</th>
                                     </tr>
                                 </thead>
-                                <tr ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize" ng-class-odd="'odd'" ng-class-even="'even'">                                    <td>[[datalist.id]]</td>
+                                <tr ng-repeat="datalist in datalists | pagination: curPage * pageSize | limitTo: pageSize" ng-class-odd="'odd'" ng-class-even="'even'">                                    
                                     <td><b>[[datalist.title]]</b><div class="actions_div"><a href="[[datalist.id]]">Bearbeiten</a>  |  <a style="color: red; cursor: pointer;" data-toggle="modal" data-target="#myModal" ng-click="$parent.catid = datalist.id ">Löschen</a></div></td>
                                 </tr>
                             </table>
