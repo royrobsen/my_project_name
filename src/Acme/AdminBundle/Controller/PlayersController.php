@@ -76,7 +76,7 @@ class PlayersController extends Controller
                     $em->persist($player);
                     $em->flush();
                     $this->get('session')->getFlashBag()->add('notice', 'Änderungen wurden erfolgreich gespeichert!');
-                    dump($form);
+
                     return $this->render('AcmeAdminBundle:Players:player.html.twig', array('player' => $player, 'form' => $form->createView()));
                    
                 }
