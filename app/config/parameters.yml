@@ -3,8 +3,8 @@ parameters:
     database_driver: pdo_mysql
     database_host: localhost
     database_port: null
-    database_name: vfldepr
-    database_user: vfldbname
+    database_name: vfldb1
+    database_user: vfldbnutzer
     database_password: sunnycuba
     mailer_transport: smtp
     mailer_host: smtp.mandrillapp.com
