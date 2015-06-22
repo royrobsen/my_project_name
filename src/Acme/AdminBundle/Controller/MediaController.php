@@ -78,7 +78,7 @@ class MediaController extends Controller
         if ($form->isValid()) {
                     
             if($form['attachment']->getData()) {
-                $dir = '/var/www/vhosts/vfl1.teambonus.de/my_project_name/web/uploads/'.$path.'/';
+                $dir = '/var/www/vhosts/vfllohbruegge3.de/my_project_name/web/uploads/'.$path.'/';
                 $form['attachment']->getData()->move($dir, $filename);
             }
         }
@@ -101,7 +101,7 @@ class MediaController extends Controller
         if ($form->isValid()) {
                     
             if($form['attachment']->getData()) {
-                $dir = '/var/www/vhosts/vfl1.teambonus.de/my_project_name/web/uploads/'.$form['path']->getData().'/';
+                $dir = '/var/www/vhosts/vfllohbruegge3.de/my_project_name/web/uploads/'.$form['path']->getData().'/';
                 $extension = $form['attachment']->getData()->getClientOriginalExtension();
                 $form['attachment']->getData()->move($dir, rand(10000,9999999) . "." . $extension);
             }
