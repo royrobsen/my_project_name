@@ -24,7 +24,7 @@ class AdminController extends Controller
                 ->getQuery();
         
         $articles = $queryArticles->getResult();
-        dump($articles);
+
         return $this->render('AcmeAdminBundle:Admin:admin.html.twig',  array('articles' => $articles));
     }
     
