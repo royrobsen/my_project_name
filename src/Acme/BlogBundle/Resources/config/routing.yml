@@ -64,7 +64,7 @@ acme_blog_jsonevents:
 ##
 
 acme_blog_admin:
-    path:   /admin
+    path:   /admin/dashboard
     defaults: { _controller: AcmeAdminBundle:Admin:admin }
 
 acme_blog_login:
