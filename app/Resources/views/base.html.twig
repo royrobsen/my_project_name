@@ -118,6 +118,14 @@
                                         </a>
                                             {% endif %}
                                     </li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <li class="first">
+                                        <a href="/admin">
+                                            <i class="fa fa-fw fa-dashboard"></i>
+                                            <span>Adminbereich</span>
+                                        </a>
+                                    </li>    
+                                    {% endif %}    
                                 </ul>
                         </div>
                     </div>
