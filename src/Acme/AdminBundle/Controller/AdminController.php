@@ -14,7 +14,18 @@ class AdminController extends Controller
     
     public function adminAction()
     {
-        return $this->render('AcmeAdminBundle:Admin:admin.html.twig');
+        
+        $articles = $this->getDoctrine()
+                ->getRepository('AcmeBlogBundle:Articles');
+        
+        $queryArticles = $articles->createQueryBuilder('a')
+                ->orderBy('a.createdDate', 'DESC')
+                ->setMaxResults(5)
+                ->getQuery();
+        
+        $articles = $queryArticles->getResult();
+        dump($articles);
+        return $this->render('AcmeAdminBundle:Admin:admin.html.twig',  array('articles' => $articles));
     }
     
 }
