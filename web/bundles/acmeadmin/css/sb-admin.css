@@ -258,3 +258,14 @@ textarea.ta-bind {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
  }
+ 
+ @media(max-width:500px) {
+     
+    .top5 { margin-top:5px; }
+    .top7 { margin-top:7px; }
+    .top10 { margin-top:10px; }
+    .top15 { margin-top:15px; }
+    .top17 { margin-top:17px; }
+    .top30 { margin-top:30px; }
+    
+ }
