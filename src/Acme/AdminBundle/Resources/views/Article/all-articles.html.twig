@@ -13,7 +13,7 @@
                         <h1 class="page-header">
                             Beiträge
                         </h1>
-                        <div class="col-lg-2">
+                        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6">
                             <div class="form-group input-group">
                             <form novalidate class="form-horizontal" role="form">
                                 <input class="form-control" type="text" ng-model="formInfo.search">
@@ -23,11 +23,11 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-lg-7">
+                        <div class="col-lg-4 col-md-6 col-xs-12 col-sm-6 top5">
                             <a href="/admin/article/new"><button class="btn btn-primary">Neuer Beitrag</button>  </a>
                             <a href="/admin/article/papierkorb"><button class="btn btn-warning">Papierkorb</button> </a>
                         </div>   
-                        <div class="col-lg-3">
+                        <div class="col-lg-4 col-md-6 col-xs-12 top5">
                             <div class="pagination pagination-center" style="margin-top: -20px !important;" ng-show="datalists.length">
                                 <ul class="pagination">
                                     <li><button class="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1"> &lt; Zurück</button></li>
