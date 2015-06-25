@@ -3,12 +3,12 @@ parameters:
     database_driver: pdo_mysql
     database_host: localhost
     database_port: null
-    database_name: vfldb1
-    database_user: vfldbnutzer
-    database_password: sunnycuba
+    database_name: vfldepr
+    database_user: root
+    database_password: null
     mailer_transport: smtp
-    mailer_host: smtp.mandrillapp.com
-    mailer_user: no-reply@team-equipment.de
-    mailer_password: vsKtWcgutKKboNMZB-nbSA
+    mailer_host: smtp.1blu.de
+    mailer_user: b224076_0-info
+    mailer_password: 1$r5!54C?
     locale: de
     secret: 7db432e8e830ebee2609d7f5f1f5d3b3bbba8f93
