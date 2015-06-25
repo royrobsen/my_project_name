@@ -3,9 +3,9 @@ parameters:
     database_driver: pdo_mysql
     database_host: localhost
     database_port: null
-    database_name: vfldepr
-    database_user: root
-    database_password: null
+    database_name: vfldb1
+    database_user: vfldbnutzer
+    database_password: sunnycuba
     mailer_transport: smtp
     mailer_host: smtp.1blu.de
     mailer_user: b224076_0-info
