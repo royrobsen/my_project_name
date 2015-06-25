@@ -21,9 +21,9 @@
                     {{ form_start(form) }}
                     {{ form_errors(form) }}	
                     <h5>Passwort:</h5>
-                    {{ form_widget(form.password, { 'attr': {'class': 'form-control'}} ) }} 
+                    {{ form_widget(form.password, { 'attr': {'class': 'form-control', 'required' : 'required'}} ) }} 
                     <h5>Passwort wiederholen:</h5>
-                    {{ form_widget(form.password2, { 'attr': {'class': 'form-control'}} ) }}<br />
+                    {{ form_widget(form.password2, { 'attr': {'class': 'form-control', 'required' : 'required'}} ) }}<br />
                     {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary'}} ) }}
                     {{ form_end(form) }}    
                 </div>
