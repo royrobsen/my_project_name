@@ -33,7 +33,7 @@ class MailController extends Controller
     $mailer = $this->get('mailer');
     $message = $mailer->createMessage()
         ->setSubject('Du brauchst ein neues Passwort!!')
-        ->setFrom('no-reply@team-equipment.de')
+        ->setFrom('info@vfllohbruegge3.de')
         ->setTo($email)
         ->setBody(
             $this->renderView(
@@ -88,7 +88,7 @@ class MailController extends Controller
             $mailer = $this->get('mailer');
             $message = $mailer->createMessage()
                 ->setSubject('Du brauchst ein neues Passwort!!')
-                ->setFrom('no-reply@team-equipment.de')
+                ->setFrom('info@vfllohbruegge3.de')
                 ->setTo($email)
                 ->setBody(
                     $this->renderView(
@@ -136,51 +136,56 @@ class MailController extends Controller
         $token1 = array_pop($token2);
 
         if($token1->getUsed() === false) {
-            
-        $user = $token1->getUserid();
-        
-            $player = new Users();  
+               
+            $user = $token1->getUserid();
 
-            $em2 = $this->getDoctrine()->getManager();
+                $player = new Users();  
 
-            $player = $em2->getRepository('AcmeBlogBundle:Users')->findBy(array('id' => $user));
+                $em2 = $this->getDoctrine()->getManager();
 
-             $form->handleRequest($request);
+                $player = $em2->getRepository('AcmeBlogBundle:Users')->findBy(array('id' => $user));
 
-                 if ($form->isValid()) {
-                                         
-                    $userid = $token1->getUserid();
-                    
-                    $em = $this->getDoctrine()->getManager();
-                    $query = $em->createQuery(
-                        'SELECT u
-                        FROM AcmeBlogBundle:Users u
-                        WHERE u.id = :id'
-                    )->setParameter('id', $userid);
+                 $form->handleRequest($request);
 
-                    $user2 = $query->getResult();
-                    $user = array_pop($user2);
-                    
-                    $encoderFactory = $this->get('security.encoder_factory');
-                    $encoder = $encoderFactory->getEncoder($user);
-                    
-                    $salt = '$2a$12$uWepESKverBsrLAuOPY'; // this should be different for every user
-                    $password = $encoder->encodePassword($form['password']->getData(), $salt);
-                    
-                    $user->setPasskeyword($password);
-                    
-                    $token1->setUsed(1);
+                     if ($form->isValid()) {
+                        
+                         if ($form['password']->getData() == $form['password2']->getData()) {
+                            $userid = $token1->getUserid();
 
-                    $em->persist($user);
-                    $em->flush();
-                    
-                    $em2->persist($token1);
-                    $em2->flush();
-                    
-                    $this->get('session')->getFlashBag()->add('success', 'Das Passwort wurde erfolgreich geändert. Du kannst dich nun mit deinem Benutzernamen und dem neuen Passwort anmelden.');
+                            $em = $this->getDoctrine()->getManager();
+                            $query = $em->createQuery(
+                                'SELECT u
+                                FROM AcmeBlogBundle:Users u
+                                WHERE u.id = :id'
+                            )->setParameter('id', $userid);
 
-                 }
-        
+                            $user2 = $query->getResult();
+                            $user = array_pop($user2);
+
+                            $encoderFactory = $this->get('security.encoder_factory');
+                            $encoder = $encoderFactory->getEncoder($user);
+
+                            $salt = '$2a$12$uWepESKverBsrLAuOPY'; // this should be different for every user
+                            $password = $encoder->encodePassword($form['password']->getData(), $salt);
+
+                            $user->setPasskeyword($password);
+
+                            $token1->setUsed(1);
+
+                            $em->persist($user);
+                            $em->flush();
+
+                            $em2->persist($token1);
+                            $em2->flush();
+
+                            $this->get('session')->getFlashBag()->add('success', 'Das Passwort wurde erfolgreich geändert. Du kannst dich nun mit deinem Benutzernamen und dem neuen Passwort anmelden.');
+                        }
+                        else {
+
+                            $this->get('session')->getFlashBag()->add('warning', 'Die eingegebenen Passwörter stimmen nicht überein.');
+
+                        }
+                     }     
         } else {
             
             $this->get('session')->getFlashBag()->add('warning', 'Leider ist der angegebene Link ungültig. Bitte fordere einen neuen Link an oder kontaktiere einen Administrator.');
