@@ -1,0 +1,61 @@
+{% extends 'admin.html.twig' %}
+{% block body %}
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Spieler bearbeiten
+                        </h1>
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-info">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    </div>   
+                     <div class="col-lg-4">
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}	  
+                            <h4>Spielerdaten</h4>
+                            <h5>{{ form_label(form.username) }}</h5>
+                            {{ form_widget(form.username, { 'attr': {'class': 'form-control'}} ) }} 
+                            
+                            <h5>{{ form_label(form.firstName) }}</h5>
+                            {{ form_widget(form.firstName, { 'attr': {'class': 'form-control'}} ) }} 
+                            
+                            <h5>{{ form_label(form.name) }}</h5>
+                            {{ form_widget(form.name, { 'attr': {'class': 'form-control'}} ) }}  
+                            
+                            <h5>{{ form_label(form.group) }}</h5>
+                            {{ form_widget(form.group, { 'attr': {'class': 'form-control'}} ) }}  
+                            
+                            <h5>{{ form_label(form.position) }}</h5>
+                            {{ form_widget(form.position, { 'attr': {'class': 'form-control'}} ) }}
+                            
+                            <h5>{{ form_label(form.email) }}</h5>
+                            {{ form_widget(form.email, { 'attr': {'class': 'form-control'}} ) }} 
+                            
+                            <h5>{{ form_label(form.active) }}</h5>
+                            {{ form_widget(form.active ) }} 
+                            
+                            <h5>{{ form_label(form.blocked) }}</h5>
+                            {{ form_widget(form.blocked) }} 
+                        </div>  
+                        <div class='col-lg-4'>
+                            <h4>
+                                    Spielerbild
+                            </h4>
+                                <br /><br />
+                                {{ form_widget(form.attachment) }}
+                                <br /><br />
+                                {{form_widget(form.save, { 'attr': {'class':'btn btn-success'}} ) }}        
+                                </div>
+                        </div>
+                </div>
+                </div>
+                    {{ form_end(form) }}
+            </div>
+{% endblock %}  
