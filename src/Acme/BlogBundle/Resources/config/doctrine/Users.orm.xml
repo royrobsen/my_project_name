@@ -11,16 +11,15 @@
     <field name="passkeyword" type="text" column="passkeyword" length="65535" nullable="false"/>
     <field name="active" type="boolean" column="active" nullable="false"/>
     <field name="email" type="string" column="email" length="70" nullable="false"/>
-    <field name="createdDate" type="datetime" column="created_date" nullable="false"/>
-    <field name="lastVisit" type="datetime" column="last_visit" nullable="false"/>
+    <field name="lastVisit" type="datetime" column="last_visit" nullable="true"/>
     <field name="blocked" type="boolean" column="blocked" nullable="false"/>
-    <field name="sendMail" type="boolean" column="send_mail" nullable="false"/>
-    <field name="goals" type="integer" column="goals" nullable="false"/>
-    <field name="games" type="integer" column="games" nullable="false"/>
+    <field name="sendMail" type="boolean" column="send_mail" nullable="true"/>
+    <field name="goals" type="integer" column="goals" nullable="true"/>
+    <field name="games" type="integer" column="games" nullable="true"/>
     <field name="position" type="string" column="position" length="20" nullable="false"/>
-    <field name="fotoid" type="integer" column="fotoid" nullable="false"/>
+    <field name="fotoid" type="integer" column="fotoid" nullable="true"/>
     <field name="mimeType" type="string" column="mime_type" nullable="true"/>
-    <field name="ersatzbank" type="integer" column="ersatzbank" nullable="false"/>
+    <field name="ersatzbank" type="integer" column="ersatzbank" nullable="true"/>
     <one-to-many
         field="article"
         target-entity="Articles"
