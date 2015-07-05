@@ -33,7 +33,7 @@ class PlayersController extends Controller
         $search = $request->query->get('search'); 
         
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery( "SELECT u, ug FROM AcmeBlogBundle:Users u JOIN u.group ug WHERE CONCAT(u.firstName, CONCAT(' ', u.name), CONCAT(' ', u.username)) LIKE :search ORDER BY u.createdDate DESC");
+        $query = $em->createQuery( "SELECT u, ug FROM AcmeBlogBundle:Users u JOIN u.group ug WHERE CONCAT(u.firstName, CONCAT(' ', u.name), CONCAT(' ', u.username)) LIKE :search");
         $query->setParameter('search', '%' . $search . '%');
         
         $players = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
@@ -95,6 +95,11 @@ class PlayersController extends Controller
         
         if ($form->isValid()) {
                        
+            $player->setPasskeyword('$13y$1212221242312');
+            if($form['email']->getData() == NULL) {
+                $player->setEmail('no-email@vfllohbruegge3.de');
+            }
+            $player->setLastVisit(new \DateTime('0000-00-00'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($player);
             $em->flush();
