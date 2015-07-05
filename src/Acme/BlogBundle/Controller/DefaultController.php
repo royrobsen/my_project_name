@@ -101,12 +101,12 @@ class DefaultController extends Controller
     }
 
 }
-        
-        $tab = get_fcontent("http://www.fussball.de/spieltag/kreisklasse-11-kreisebene-hamburg-kreisklasse-herren-saison1415-hamburg/-/staffel/01KPIPVOI4000001VV0AG812VUIPU9D7-G#!/section/stage");
+
+        $tab = get_fcontent("http://www.fussball.de/spieltag/kreisklasse-8-kreisebene-hamburg-kreisklasse-herren-saison1516-hamburg/-/staffel/01OKS9I1D4000004VV0AG812VSHGDHQC-G#!/section/stage");
         $test = explode("<td class=\"column-rank\">",$tab[0]);
         $table = "";
         $i = 1;
-    while ($i != 14) {
+    while ($i != 17) {
 
     $test2 = explode(" break ",strip_tags(str_replace("</td>"," break ",str_replace("</span></div>","</span>",$test[$i]))));
 
@@ -194,7 +194,6 @@ class DefaultController extends Controller
         $queryUsers = $users->createQueryBuilder('u')
                 ->where('u.fotoid != :fotoid')
                 ->setParameter('fotoid', 0)
-                ->orderBy('u.createdDate', 'DESC')
                 ->getQuery();
         
         $users = $queryUsers->getResult();
