@@ -96,6 +96,8 @@ class PlayersController extends Controller
         if ($form->isValid()) {
                        
             $player->setPasskeyword('$13y$1212221242312');
+            $player->setFotoid('1026189');
+            $player->setMimeType('0.jpg');
             if($form['email']->getData() == NULL) {
                 $player->setEmail('no-email@vfllohbruegge3.de');
             }
