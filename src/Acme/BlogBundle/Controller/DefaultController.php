@@ -253,7 +253,7 @@ class DefaultController extends Controller
         $search = $request->query->get('search'); 
         
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery( "SELECT a, u, c, s FROM AcmeBlogBundle:Articles a JOIN a.author u JOIN a.category c JOIN a.state s WHERE a.status != 2 AND CONCAT(a.headline, CONCAT(' ', a.articleContent))  LIKE :search ORDER BY a.createdDate DESC");
+        $query = $em->createQuery( "SELECT a, u, c, s FROM AcmeBlogBundle:Articles a JOIN a.author u JOIN a.category c JOIN a.state s WHERE a.status != 2 AND a.status != 3 AND CONCAT(a.headline, CONCAT(' ', a.articleContent))  LIKE :search ORDER BY a.createdDate DESC");
         $query->setParameter('search', '%' . $search . '%');
         
         $articles = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);;
